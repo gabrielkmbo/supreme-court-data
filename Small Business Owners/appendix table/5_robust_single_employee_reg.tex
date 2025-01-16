@@ -1,0 +1,26 @@
+{
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{4}{c}}
+\hline\hline
+                    &\multicolumn{2}{c}{PID (6-point)}          &\multicolumn{2}{c}{Trump or Biden (3-point)}\\
+                    &\multicolumn{1}{c}{(1)}         &\multicolumn{1}{c}{(2)}         &\multicolumn{1}{c}{(3)}         &\multicolumn{1}{c}{(4)}         \\
+\hline
+Regulation          &       0.836\sym{***}&       0.825\sym{***}&       1.042\sym{***}&       1.072\sym{***}\\
+                    &     (0.030)         &     (0.031)         &     (0.036)         &     (0.036)         \\
+Employer SBO        &      -0.062\sym{*}  &      -0.054         &      -0.148\sym{***}&      -0.083\sym{*}  \\
+                    &     (0.027)         &     (0.028)         &     (0.035)         &     (0.036)         \\
+Non-Employer SBO    &      -0.113\sym{***}&      -0.094\sym{***}&      -0.110\sym{***}&      -0.071\sym{**} \\
+                    &     (0.017)         &     (0.018)         &     (0.024)         &     (0.025)         \\
+Not In Labor Force Non-SBO&      -0.033\sym{*}  &      -0.022         &      -0.034         &      -0.047\sym{*}  \\
+                    &     (0.016)         &     (0.018)         &     (0.021)         &     (0.024)         \\
+Gig Workers Non-SBO &      -0.021         &      -0.010         &      -0.033         &      -0.038         \\
+                    &     (0.023)         &     (0.023)         &     (0.029)         &     (0.029)         \\
+Constant            &       0.078\sym{***}&       0.077\sym{***}&      -0.018         &      -0.047\sym{*}  \\
+                    &     (0.019)         &     (0.020)         &     (0.023)         &     (0.024)         \\
+\hline
+Controls            &                     &           X         &                     &           X         \\
+Observations        &        2284         &        2283         &        2280         &        2279         \\
+R-squared           &        0.30         &        0.32         &        0.27         &        0.30         \\
+\hline\hline
+\end{tabular}
+}

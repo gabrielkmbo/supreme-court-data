@@ -1,0 +1,355 @@
+rm(list=ls())
+
+require(ggplot2)
+require(scales)
+require(stringr)
+require(plyr)
+require(dplyr)
+require(haven)
+
+#abortion function
+multiplot2 <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
+  library(grid)
+  
+  # Make a list from the ... arguments and plotlist
+  plots <- c(list(...), plotlist)
+  
+  numPlots = length(plots)
+  
+  # If layout is NULL, then use 'cols' to determine layout
+  if (is.null(layout)) {
+    # Make the panel
+    # ncol: Number of columns of plots
+    # nrow: Number of rows needed, calculated from # of cols
+    layout <- matrix(seq(1, cols * ceiling(numPlots/cols)),
+                     ncol = cols, nrow = ceiling(numPlots/cols))
+  }
+  
+  # if pdf page only has one plot, then it will resize the plot to only fit half the page
+  if (numPlots==1) {
+    grid.newpage()
+    pushViewport(viewport(layout = grid.layout(3, 1)))
+    print(plots[[1]], vp = viewport(layout.pos.row = 1, layout.pos.col = 1, width = unit(1, "npc"), height = unit(1, "npc")))
+    
+  } else {
+    # Set up the page
+    grid.newpage()
+    pushViewport(viewport(layout = grid.layout(nrow(layout), ncol(layout))))
+    
+    # Make each plot, in the correct location
+    for (i in 1:numPlots) {
+      # Get the i,j matrix positions of the regions that contain this subplot
+      matchidx <- as.data.frame(which(layout == i, arr.ind = TRUE))
+      
+      print(plots[[i]], vp = viewport(layout.pos.row = matchidx$row,
+                                      layout.pos.col = matchidx$col))
+    }
+  }
+}
+
+multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
+  library(grid)
+  
+  # Make a list from the ... arguments and plotlist
+  plots <- c(list(...), plotlist)
+  
+  numPlots = length(plots)
+  
+  # If layout is NULL, then use 'cols' to determine layout
+  if (is.null(layout)) {
+    # Make the panel
+    # ncol: Number of columns of plots
+    # nrow: Number of rows needed, calculated from # of cols
+    layout <- matrix(seq(1, cols * ceiling(numPlots/cols)),
+                     ncol = cols, nrow = ceiling(numPlots/cols))
+  }
+  
+  # if pdf page only has one plot, then it will resize the plot to only fit half the page
+  if (numPlots==1) {
+    grid.newpage()
+    pushViewport(viewport(layout = grid.layout(3, 1)))
+    print(plots[[1]], vp = viewport(layout.pos.row = 1, layout.pos.col = 1, width = unit(1, "npc"), height = unit(1, "npc")))
+  
+  } else if (numPlots == 2) {
+    grid.newpage()
+    pushViewport(viewport(layout = grid.layout(3, 1)))
+    print(plots[[1]], vp = viewport(layout.pos.row = 1, layout.pos.col = 1))
+    print(plots[[2]], vp = viewport(layout.pos.row = 2, layout.pos.col = 1))
+    
+  } else {
+    # Set up the page
+    grid.newpage()
+    pushViewport(viewport(layout = grid.layout(nrow(layout), ncol(layout))))
+    
+    # Make each plot, in the correct location
+    for (i in 1:numPlots) {
+      # Get the i,j matrix positions of the regions that contain this subplot
+      matchidx <- as.data.frame(which(layout == i, arr.ind = TRUE))
+      
+      print(plots[[i]], vp = viewport(layout.pos.row = matchidx$row,
+                                      layout.pos.col = matchidx$col))
+    }
+  }
+}
+
+multiplot3 <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
+  library(grid)
+  
+  # Make a list from the ... arguments and plotlist
+  plots <- c(list(...), plotlist)
+  
+  numPlots = length(plots)
+  
+  # If layout is NULL, then use 'cols' to determine layout
+  if (is.null(layout)) {
+    # Make the panel
+    # ncol: Number of columns of plots
+    # nrow: Number of rows needed, calculated from # of cols
+    layout <- matrix(seq(1, cols * ceiling(numPlots/cols)),
+                     ncol = cols, nrow = ceiling(numPlots/cols))
+  }
+  
+  # if pdf page only has one plot, then it will resize the plot to only fit half the page
+  if (numPlots==1) {
+    grid.newpage()
+    pushViewport(viewport(layout = grid.layout(1, 1)))
+    print(plots[[1]], vp = viewport(layout.pos.row = 1, layout.pos.col = 1, width = unit(1, "npc"), height = unit(1, "npc")))
+    
+  } else if (numPlots == 2) {
+    grid.newpage()
+    pushViewport(viewport(layout = grid.layout(3, 1)))
+    print(plots[[1]], vp = viewport(layout.pos.row = 1, layout.pos.col = 1))
+    print(plots[[2]], vp = viewport(layout.pos.row = 2, layout.pos.col = 1))
+    
+  } else {
+    # Set up the page
+    grid.newpage()
+    pushViewport(viewport(layout = grid.layout(nrow(layout), ncol(layout))))
+    
+    # Make each plot, in the correct location
+    for (i in 1:numPlots) {
+      # Get the i,j matrix positions of the regions that contain this subplot
+      matchidx <- as.data.frame(which(layout == i, arr.ind = TRUE))
+      
+      print(plots[[i]], vp = viewport(layout.pos.row = matchidx$row,
+                                      layout.pos.col = matchidx$col))
+    }
+  }
+}
+
+data <- read_dta('/Users/gabrielbo/Dropbox/src 2024/small business owners survey/final_combined.dta')
+
+data$group <- ''
+data$group[data$sbo == 1] <- 'Small Business Owners'
+data$group[data$sbo == 0] <- 'Non-Small Business Owners'
+
+
+make.fig <- function(var, qname){
+  data.tmp <- data[!is.na(data[,var]),]
+  
+  data.tmp$outcome <- as_factor(data.tmp[,var])
+  
+  data.tmp <- data.frame(outcome = data.tmp$outcome, group = data.tmp$group, weight = data.tmp$weight)
+  names(data.tmp) <- c('outcome', 'group')
+  
+  names(data.tmp) <- c('outcome', 'group', 'weight')
+  
+  dfl <- data.tmp %>% 
+    group_by(group, outcome) %>% 
+    summarise(n=sum(weight)) %>% 
+    group_by(group) %>% 
+    mutate(perc=n/sum(n))
+  
+  g <- ggplot(dfl, aes(x=outcome, y=perc)) +
+    geom_bar(stat = 'identity', aes(fill = group)) + 
+    scale_x_discrete(labels = function(x) str_wrap(x, width = 10)) +
+    scale_y_continuous(labels=percent) + ylab('') + #Percent Selecting\nEach Option') +
+    facet_wrap(~ group) +
+    xlab('') + theme_bw() +
+    # adjust the number of colors
+    scale_fill_manual(values = c('dodgerblue1', 'firebrick4', 'dodgerblue2', 'dodgerblue4',
+                                 'firebrick1', 'firebrick4', 'darkolivegreen3'))  +
+    theme(legend.position="none") +
+    ggtitle(qname)
+  return(g)
+}
+
+# regulation attitudes
+pdf('regulation_attitudes_1.pdf', width = 8.5, height = 11)
+multiplot(make.fig('regulations_work', 'Regulations Effect on Job'),
+          make.fig('regulations_life', 'Regulations Effect on Regular Life'),
+          make.fig('dis_agree_regulate_1', 'Government\'s Understanding to Regulate'),
+          cols = 1)
+dev.off()
+pdf('regulation_attitudes_2.pdf', width = 8.5, height = 11)
+multiplot(make.fig('dis_agree_regulate_2', 'Ease of Compliance with Regulations'),
+          make.fig('small_b_regulate', 'Increase or Decrease Government Regulation'),
+          make.fig('fire_employees', 'Support for Government Limitations on Firing Workers'),
+          cols = 1)
+dev.off()
+pdf('regulation_attitudes_3.pdf', width = 8.5, height = 11)
+multiplot(make.fig('unions_private', 'Labor Union Influence'),
+          cols = 1)
+dev.off()
+
+#Figure Tax Burden
+pdf('tax_burden_1.pdf', width = 8.5, height = 11)
+multiplot(make.fig('income_tax_return', 'Times per Year Filing Income Taxes'),
+          make.fig('tax_stress', 'Stress Caused by Taxes'),
+          make.fig('attention_to_taxes', 'Attention Paid to Taxes'),
+          cols = 1)
+dev.off()
+pdf('tax_burden_2.pdf', width = 8.5, height = 11)
+multiplot(make.fig('audited_worry', 'Anxiety About Audits'),
+          make.fig('filing_type', 'Method of Filing Taxes'),
+          make.fig('pay_or_refund', 'Pay or Refund Taxes'),
+          cols = 1)
+dev.off()
+pdf('tax_burden_3.pdf', width = 8.5, height = 11)
+multiplot(make.fig('refund_feeling', 'Feeling About Tax Refunds'),
+          cols = 1)
+dev.off()
+
+#Figure Tax Attitudes
+pdf('tax_attitudes_1.pdf', width = 8.5, height = 11)
+multiplot(make.fig('raise_taxes', 'Changing Current Tax Rates'),
+          make.fig('gov_spending_1', 'Financial Assistance to the Poor'),
+          make.fig('gov_spending_2', 'Assistance for Workers Losing Jobs'),
+          cols = 1)
+dev.off()
+pdf('tax_attitudes_2.pdf', width = 8.5, height = 11)
+multiplot(make.fig('gov_spending_3', 'Money to University Research'),
+          make.fig('universal_income', 'Universal Income'),
+          make.fig('irs_funding', 'Increasing IRS Funding'),
+          cols = 1)
+dev.off()
+
+# Figure Social Conservatism
+pdf('social_conservatism_1.pdf', width = 9, height = 3)
+multiplot3(make.fig('gay_marriage', 'Support for Gay Marriage'),
+          cols = 1)
+dev.off()
+pdf('social_conservatism_4.pdf', width = 9, height = 3)
+multiplot3(make.fig('death_penalty', 'Support for Death Penalty'),
+           cols = 1)
+dev.off()
+pdf('social_conservatism_5.pdf', width = 9, height = 3)
+multiplot3(make.fig('trans_rights', 'Support for Transgender Rights'),
+           cols = 1)
+dev.off()
+pdf('social_conservatism_2.pdf', width = 9, height = 3)
+multiplot3(make.fig('gun_rights', 'Support for Gun Rights'),
+           cols = 1)
+dev.off()
+pdf('social_conservatism_3.pdf', width = 8, height = 5)
+multiplot3(make.fig('abortion_rights', 'Support for Abortion Rights'),
+           cols = 1)
+dev.off()
+
+# Figure Risk Acceptance
+pdf('risk_1.pdf', width = 9, height = 3)
+multiplot3(make.fig('slider_risk_1', 'Willingness To Take Risks'),
+          cols = 1)
+dev.off()
+pdf('risk_2.pdf', width = 9, height = 3)
+multiplot3(make.fig('others_risks_1', 'Willingness To Make Life Changes'),
+          cols = 1)
+dev.off()
+
+# Figure Protestant Work Ethic
+pdf('protestant_1.pdf', width = 9, height = 3)
+multiplot3(make.fig('work_ethic_1_1', 'Success Based On Effort'),
+          cols = 1)
+dev.off()
+pdf('protestant_2.pdf', width = 9, height = 3)
+multiplot3(make.fig('work_ethic_1_2', 'Leisure Inhibiting Society Opinions'),
+          cols = 1)
+dev.off()
+pdf('protestant_3.pdf', width = 9, height = 3)
+multiplot3(make.fig('work_ethic_1_3', 'Hard Work Does Not Lead to Success'),
+          cols = 1)
+dev.off()
+
+# Figure Individualism
+pdf('individualism_1.pdf', width = 9, height = 3)
+multiplot3(make.fig('individuality_1', 'Independence'),
+          cols = 1)
+dev.off()
+pdf('individualism_2.pdf', width = 9, height = 3)
+multiplot3(make.fig('individuality_2', 'Signifance of Ordinary People'),
+          cols = 1)
+dev.off()
+
+# # Figure Regulation Attitudes
+# pdf('regulation_attitudes.pdf', width = 8.5, height = 11)
+# multiplot(make.fig('regulations_work', 'Regulations Effect on Job'),
+#           make.fig('regulations_life', 'Regulations Effect on Regular Life'),
+#           make.fig('dis_agree_regulate_1', 'Government\'s Understanding to Regulate'),
+#           cols = 1)
+# multiplot(make.fig('dis_agree_regulate_2', 'Ease of Compliance with Regulations'),
+#           make.fig('small_b_regulate', 'Increase or Decrease Government Regulation'),
+#           make.fig('fire_employees', 'Support for Government Limitations on Firing Workers'),
+#           cols = 1)
+# multiplot(make.fig('unions_private', 'Labor Union Influence'),
+#           cols = 1)
+# dev.off()
+
+# #Figure Tax Burden
+# pdf('tax_burden.pdf', width = 8.5, height = 11)
+# multiplot(make.fig('income_tax_return', 'Times per Year Filing Income Taxes'),
+#           make.fig('tax_stress', 'Stress Caused by Taxes'),
+#           make.fig('attention_to_taxes', 'Attention Paid to Taxes'),
+#           cols = 1)
+# multiplot(make.fig('audited_worry', 'Anxiety About Government Audits'),
+#           make.fig('filing_type', 'Method to Filing Taxes'),
+#           make.fig('pay_or_refund', 'Pay or Refund Taxes'),
+#           cols = 1)
+# multiplot(make.fig('refund_feeling', 'Feeling About Tax Refunds'),
+#           cols = 1)
+# dev.off()
+
+# #Figure Tax Attitudes
+# pdf('tax_attitudes.pdf', width = 8.5, height = 11)
+# multiplot(make.fig('raise_taxes', 'Changing Current Tax Rates'),
+#           make.fig('gov_spending_1', 'Financial Assistance to the Poor'),
+#           make.fig('gov_spending_2', 'Services for Workers Losing Jobs'),
+#           cols = 1)
+# multiplot(make.fig('gov_spending_3', 'Money to University Research'),
+#           make.fig('universal_income', 'Universal Income Opinion'),
+#           make.fig('irs_funding', 'Increasing IRS Funding Opinion'),
+#           cols = 1)
+# dev.off()
+
+
+# # Figure Social Conservatism
+# pdf('social_conservatism.pdf', width = 8.5, height = 11)
+# multiplot(make.fig('gay_marriage', 'Support for Gay Marriage'),
+#           make.fig('death_penalty', 'Support for Death Penalty'),
+#           make.fig('trans_rights', 'Support for Transgender Rights'),
+#           cols = 1)
+# multiplot2(make.fig('gun_rights', 'Support for Gun Rights'),
+#           make.fig('abortion_rights', 'Support for Abortion Rights'),
+#           cols = 1)
+# dev.off()
+
+# # Figure Risk Acceptance
+# pdf('risk.pdf', width = 8.5, height = 11)
+# multiplot(make.fig('slider_risk_1', 'Willingness To Take Risks'),
+#           make.fig('others_risks_1', 'Willingness To Make Life Changes'),
+#           cols = 1)
+# dev.off()
+
+# # Figure Protestant Work Ethic
+# pdf('protestant.pdf', width = 8.5, height = 11)
+# multiplot(make.fig('work_ethic_1_1', 'Success Based On Effort'),
+#           make.fig('work_ethic_1_2', 'Leisure Inhibiting Society Opinions'),
+#           make.fig('work_ethic_1_3', 'Hard Work Does Not Lead to Success'),
+#           cols = 1)
+# dev.off()
+
+# # Figure Individualism
+# pdf('individualism.pdf', width = 8.5, height = 11)
+# multiplot(make.fig('individuality_1', 'Independence'),
+#           make.fig('individuality_2', 'Signifance of Ordinary People'),
+#           cols = 1)
+# dev.off()

@@ -1,0 +1,96 @@
+Variable,Description,Codes
+weight,Post-stratification weight (provided by YouGov),
+Demographics,,
+gender,Gender,"1 ""Male"" 2 ""Female"""
+age4,Age,"1 ""Under 30"" 2 ""30-44"" 3 ""34-64"" 4 ""65+"""
+race,Race,"1 ""White"" 2 ""Black"" 3 ""Hispanic"" 4 ""Asian"" 5 ""Native American"" 6 ""Middle Eastern"" 7 ""Mixed"" 8 ""Other"""
+educ4,Education,"1 ""HS or less"" 2 ""Some college"" 3 ""College grad"" 4 ""Postgrad"""
+rep,Republican,"1 ""Republican"" 0 Other/Dem/Ind"
+dem,Democrat,"1 ""Democrat"" 0 Other/Rep/Ind"
+weight,Survey Weight,
+educ,Education,1 Less than HS 2 High School 3 Some college 4 Associates degree 5 Bachelors degree 6 Graduate degree
+pid7,Seven-point party identification,"1 ""Strong Democrat""ù 2 ""Weak Democrat""ù 3 ""leans Democrat""ù 4 ""Independent""ù 5 ""Leans Republican""ù 6 ""Weak Republican""ù 7 ""Strong Republican""ù 8 NA"
+ideo5,Five-point ideological self-identification,"1 ""Very Liberal""ù 2 ""Liberal""ù 3 ""Moderate""ù 4 ""Conservative""ù 5 ""Very Conservative""ù 6 NA"
+Personal Views on Cases (2021),,
+gayadoption_per,Fulton v. City of Philadelphia PA,"1 ""Prohibiting religious agencies from participating in the foster care system unless they allow children to be placed with same-sex couples DOES NOT VIOLATE agencies' First Amendment rights to religious freedom"" 2 ""Prohibiting religious agencies from participating in the foster care system unless they allow children to be placed with same-sex couples DOES VIOLATE agencies' First Amendment rights to religious freedom"""
+azprovballot_per,Brnovich v. Democratic National Committee I,"1 ""Discarding entire ballots from voters who voted outside of their precinct IS UNLAWFUL"" 2 ""Discarding entire ballots from voters who voted outside of their precinct IS LAWFUL"""
+azcollectballot_per,Brnovich v. Democratic National Committee II,"1 ""Voters SHOULD BE ABLE to rely on another person or third party to collect and drop off ballots"" 2 ""STATES CAN FORBID voters from relying on another person or third party to collect and drop off ballots"""
+schoolspeech_per,Mahanoy Area School District v. B.L.,"1 ""Public school officials CAN punish students for things they say or write off campus"" 2 ""Public school officials CANNOT punish students for things they say or write off campus"""
+juvcrime_per,Jones v. Mississippi,"1 ""Juvenile defendants MUST BE FOUND to be incorrigible before being sentenced to a life sentence without parole"" 2 ""Juvenile defendants NEED NOT BE FOUND to be incorrigible before being sentenced to a life sentence without parole"""
+databases_per,Van Buren v. United States,"1 ""Using government databases for uses not explicitly authorized SHOULD BE PUNISHED"" 2 ""Using government databases for uses not explicitly authorized SHOULD NOT BE PUNISHED"""
+ncaa_per unions_per,National Collegiate Athletic Association v. Alston,"1 ""The NCAA SHOULD BE ABLE TO strictly limit paid compensation to college athletes."" 2 ""The NCAA SHOULD NOT BE ABLE TO strictly limit paid compensation to college athletes."""
+unions_per,Cedar Point Nursery v. Hassid,"1 ""States CAN require that employers allow union representatives to enter a company's private property"" 2 ""States CANNOT require that employers allow union representatives to enter a company's private property"""
+warrants_per,Lange v. California,"1 ""Police SHOULD be able to enter someone's house without a warrant if they are in pursuit of them when that person enters their home"" 2 ""Police SHOULD NOT be able to enter someone's house without a warrant if they are in pursuit of them when that person enters their home"""
+donors_per,Americans for Prosperity Foundation v. Becerra,"1 ""Requiring nonprofit organizations to report information to the state about their major donors VIOLATES their First Amendment rights"" 2 ""Requiring nonprofit organizations to report information to the state about their major donors DOES NOT VIOLATE their First Amendment rights"""
+covidchurch_per,Roman Catholic Diocese of Brooklyn v. Cuomo,"1 ""States CANNOT prohibit in-person religious gatherings because of the First Amendment right to free exercise of religion"" 2 ""States CAN prohibit in-person religious gatherings despite the First Amendment right to free exercise of religion"""
+agencies_per,Collins v. Mnuchin,"1 ""Limiting the president to only firing agency heads for a specific reason INFRINGES on the president's authority"" 2 ""Limiting the president to only firing agency heads for a specific reason DOES NOT INFRINGE on the president's authority"""
+Perception of Court Position on Cases (2021),,
+gayadoption_court,Fulton v. City of Philadelphia PA,"1 ""Prohibiting religious agencies from participating in the foster care system unless they allow children to be placed with same-sex couples DOES NOT VIOLATE agencies' First Amendment rights to religious freedom"" 2 ""Prohibiting religious agencies from participating in the foster care system unless they allow children to be placed with same-sex couples DOES VIOLATE agencies' First Amendment rights to religious freedom"""
+azprovballot_court,Brnovich v. Democratic National Committee I,"1 ""Discarding entire ballots from voters who voted outside of their precinct IS UNLAWFUL"" 2 ""Discarding entire ballots from voters who voted outside of their precinct IS LAWFUL"""
+azcollectballot_court,Brnovich v. Democratic National Committee II,"1 ""Voters SHOULD BE ABLE to rely on another person or third party to collect and drop off ballots"" 2 ""STATES CAN FORBID voters from relying on another person or third party to collect and drop off ballots"""
+schoolspeech_court,Mahanoy Area School District v. B.L.,"1 ""Public school officials CAN punish students for things they say or write off campus"" 2 ""Public school officials CANNOT punish students for things they say or write off campus"""
+juvcrime_court,Jones v. Mississippi,"1 ""Juvenile defendants MUST BE FOUND to be incorrigible before being sentenced to a life sentence without parole"" 2 ""Juvenile defendants NEED NOT BE FOUND to be incorrigible before being sentenced to a life sentence without parole"""
+databases_court,Van Buren v. United States,"1 ""Using government databases for uses not explicitly authorized SHOULD BE PUNISHED"" 2 ""Using government databases for uses not explicitly authorized SHOULD NOT BE PUNISHED"""
+ncaa_court unions_court,National Collegiate Athletic Association v. Alston,"1 ""The NCAA SHOULD BE ABLE TO strictly limit paid compensation to college athletes."" 2 ""The NCAA SHOULD NOT BE ABLE TO strictly limit paid compensation to college athletes."""
+unions_court,Cedar Point Nursery v. Hassid,"1 ""States CAN require that employers allow union representatives to enter a company's private property"" 2 ""States CANNOT require that employers allow union representatives to enter a company's private property"""
+warrants_court,Lange v. California,"1 ""Police SHOULD be able to enter someone's house without a warrant if they are in pursuit of them when that person enters their home"" 2 ""Police SHOULD NOT be able to enter someone's house without a warrant if they are in pursuit of them when that person enters their home"""
+donors_court,Americans for Prosperity Foundation v. Becerra,"1 ""Requiring nonprofit organizations to report information to the state about their major donors VIOLATES their First Amendment rights"" 2 ""Requiring nonprofit organizations to report information to the state about their major donors DOES NOT VIOLATE their First Amendment rights"""
+covidchurch_court,Roman Catholic Diocese of Brooklyn v. Cuomo,"1 ""States CANNOT prohibit in-person religious gatherings because of the First Amendment right to free exercise of religion"" 2 ""States CAN prohibit in-person religious gatherings despite the First Amendment right to free exercise of religion"""
+agencies_court,Collins v. Mnuchin,"1 ""Limiting the president to only firing agency heads for a specific reason INFRINGES on the president's authority"" 2 ""Limiting the president to only firing agency heads for a specific reason DOES NOT INFRINGE on the president's authority"""
+Personal Views on Cases (2020),,
+scholarships_per,Espinoza v. Montana Department of Revenue,"1 ""States SHOULD be allowed to ban students from using taxpayer-subsidized scholarships to attend religious schools"" 2 ""States SHOULD NOT be allowed to ban students from using taxpayer-subsidized scholarships to attend religious schools"""
+trump_congress_per,Trump v. Deutsche Bank AG,"1 ""A president SHOULD be able to block turning over his financial records to Congress"" 2 ""A president SHOULD NOT be able to block turning over his financial records to Congress"""
+cfpb_per,"Seila Law, LLC v. CFPB","1 ""The structure of the CFPB is appropriate"" 2 ""The CFPB has too much independent power"""
+fire_gays_per,"Bostock v. Clayton County, Georgia","1 ""It should be ILLEGAL for employees to be fired based on their sexual orientation"" 2 ""It should be LEGAL for employers to fire people based on their sexual orientation"""
+fire_trans_per,"R.G. & G.R. Harris Funeral Homes, Inc. v. EEOC","1 ""It should be ILLEGAL for employees to be fired for being transgender."" 2 ""It should be LEGAL for employees to be fired for being transgender."""
+daca_per,DHS v. Regents of the University of California,"1 ""DACA should remain."" 2 ""DACA should be ended."""
+abortion_per,"June Medical Services, LLC v. Russo","1 ""States requiring abortion providers to have admitting privileges DOES violate women's constitutional rights"" 2 ""States requiring abortion providers to have admitting privileges DOES NOT violate women's constitutional rights"""
+trump_state_per,Trump v. Vance,"1 ""New York state prosecutors have the right to obtain a president's tax records"" 2 ""A president does not have to turn over his tax records to state prosecutors"""
+electoralcollege_per,Chiafalo v. Washington,"1 ""States SHOULD be able to require their electors to vote for the candidate who won their state"" 2 ""States SHOULD NOT be able to require their electors to vote for the candidate who won their state"""
+contraceptives_per,Little Sisters of the Poor v. Pennsylvania,"1 ""Employers SHOULD NOT be forced to cover contraceptives"" 2 ""Employers SHOULD be forced to cover contraceptives"""
+Perception of Court Position on Cases (2020),,
+scholarships_court,Espinoza v. Montana Department of Revenue,"1 ""States SHOULD be allowed to ban students from using taxpayer-subsidized scholarships to attend religious schools"" 2 ""States SHOULD NOT be allowed to ban students from using taxpayer-subsidized scholarships to attend religious schools"""
+trump_congress_court,Trump v. Deutsche Bank AG,"1 ""A president SHOULD be able to block turning over his financial records to Congress"" 2 ""A president SHOULD NOT be able to block turning over his financial records to Congress"""
+cfpb_court,"Seila Law, LLC v. CFPB","1 ""The structure of the CFPB is appropriate"" 2 ""The CFPB has too much independent power"""
+fire_gays_court,"Bostock v. Clayton County, Georgia","1 ""It should be ILLEGAL for employees to be fired based on their sexual orientation"" 2 ""It should be LEGAL for employers to fire people based on their sexual orientation"""
+fire_trans_court,"R.G. & G.R. Harris Funeral Homes, Inc. v. EEOC","1 ""It should be ILLEGAL for employees to be fired for being transgender."" 2 ""It should be LEGAL for employees to be fired for being transgender."""
+daca_court,DHS v. Regents of the University of California,"1 ""DACA should remain."" 2 ""DACA should be ended."""
+abortion_court,"June Medical Services, LLC v. Russo","1 ""States requiring abortion providers to have admitting privileges DOES violate women's constitutional rights"" 2 ""States requiring abortion providers to have admitting privileges DOES NOT violate women's constitutional rights"""
+trump_state_court,Trump v. Vance,"1 ""New York state prosecutors have the right to obtain a president's tax records"" 2 ""A president does not have to turn over his tax records to state prosecutors"""
+electoralcollege_court,Chiafalo v. Washington,"1 ""States SHOULD be able to require their electors to vote for the candidate who won their state"" 2 ""States SHOULD NOT be able to require their electors to vote for the candidate who won their state"""
+contraceptives_court,Little Sisters of the Poor v. Pennsylvania,"1 ""Employers SHOULD NOT be forced to cover contraceptives"" 2 ""Employers SHOULD be forced to cover contraceptives"""
+Personal Views on Cases (2010),,
+guncontrol_per,McDonald v. Chicago,"1 ""state and local government should be able to ban the possession of handguns"" 2 ""the right of individual citizens to possess handguns is protected under the Second Amendment"""
+affaction_per,Ricci v. DeStefano,"1 ""the city should be allowed to deny the promotion of the white firefighters"" 2 ""the city must abide by the results of the test and promote the white firefighters"""
+raceschools_per,Parents Involved v. Seattle,"1 ""school districts should be allowed to use race to promote diversity"" 2 ""race should not be used to assign students to school"""
+guantamo_per,Hamdan v. Rumsfeld,"1 ""the federal government should be allowed to conduct military trials of suspected terrorists"" 2 ""suspected terrorists have the right to be tried in the American court system"""
+citizensunited_per,Citizens United v. FEC,"1 ""Prohibiting corporations from contributing to political campaigns is a violation of the right to free speech"" 2 ""Prohibiting corporations from contributing to political campaigns is a legitimate restriction that promotes more democratic elections"""
+sexoffenders_per,U.S. v. Comstock,"1 ""The federal government should be able to involuntarily put sex offenders in mental institutions after their prison sentences have ended"" 2 ""The federal government must release sex offenders after their prison sentences have ended"""
+religoussymbols_per,Salazar v. Buono,"1 ""religious symbols should be allowed to be placed on public land"" 2 ""placing religious symbols on public land violates the separation of church and state"""
+voterid_per,Crawford v. Marion County,"1 ""states can require voters to show photo identification"" 2 ""requiring voters to show photo identification violates voting rights"""
+cappunish_per,Baze v. Rees,"1 ""lethal injection should be allowed"" 2 ""lethal injection is cruel and unusual punishment"""
+pbabortion_per,Gonzales v. Carhart,"1 ""the federal government should be allowed to ban partial birth abortions"" 2 ""banning partial birth abortions violates women‚Äôs rights"""
+Perception of Court Position on Cases (2010),,
+guncontrol_court,McDonald v. Chicago,"1 ""state and local government should be able to ban the possession of handguns"" 2 ""the right of individual citizens to possess handguns is protected under the Second Amendment"""
+affaction_court,Ricci v. DeStefano,"1 ""the city should be allowed to deny the promotion of the white firefighters"" 2 ""the city must abide by the results of the test and promote the white firefighters"""
+raceschools_court,Parents Involved v. Seattle,"1 ""school districts should be allowed to use race to promote diversity"" 2 ""race should not be used to assign students to school"""
+guantamo_court,Hamdan v. Rumsfeld,"1 ""the federal government should be allowed to conduct military trials of suspected terrorists"" 2 ""suspected terrorists have the right to be tried in the American court system"""
+citizensunited_court,Citizens United v. FEC,"1 ""Prohibiting corporations from contributing to political campaigns is a violation of the right to free speech"" 2 ""Prohibiting corporations from contributing to political campaigns is a legitimate restriction that promotes more democratic elections"""
+sexoffenders_court,U.S. v. Comstock,"1 ""The federal government should be able to involuntarily put sex offenders in mental institutions after their prison sentences have ended"" 2 ""The federal government must release sex offenders after their prison sentences have ended"""
+religoussymbols_court,Salazar v. Buono,"1 ""religious symbols should be allowed to be placed on public land"" 2 ""placing religious symbols on public land violates the separation of church and state"""
+Court Reform Variables (2021),,
+courtexpand,Support for expanding size of the Court,"1 ""Strongly Agree""ù 2 ""Agree""ù 3 ""Neither Agree nor Disagree""ù 4 ""Disagree""ù 5 ""Strongly Disagree""ù"
+courttermlimits,Support for term limits for justices,"1 ""Strongly Agree""ù 2 ""Agree""ù 3 ""Neither Agree nor Disagree""ù 4 ""Disagree""ù 5 ""Strongly Disagree""ù"
+Ideology Estimate Variables (including perceptions),,
+idealg,Estimated respondent ideology,
+perception,Estimated respondent perception of Court,
+idealg_sotomayor,Estimated ideology of Justice Sotomayor,
+idealg_breyer,Estimated ideology of Justice Breyer,
+idealg_kagan,Estimated ideology of Justice Kagan,
+idealg_roberts,Estimated ideology of Justice Roberts,
+idealg_kavanaugh,Estimated ideology of Justice Kavanaugh,
+idealg_barrett,Estimated ideology of Justice Barrett,
+idealg_thomas,Estimated ideology of Justice Thomas,
+idealg_gorsuch,Estimated ideology of Justice Gorsuch,
+idealg_alito,Estimated ideology of Justice Alito,
+idealg_courtmajority,Estimated ideology of Court (Majority) ,

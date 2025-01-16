@@ -1,0 +1,1208 @@
+{smcl}
+{txt}{sf}{ul off}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}/Users/gabrielbo/Downloads/summer 24 research/stata sessions/drive-download-20240712T220339Z-001/Stata2.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}12 Jul 2024, 15:21:30
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/gy/1wnbbtnn5zdfw6khbbgcym6w0000gn/T//SD94306.000000"
+{txt}
+{com}. clear                  // clear memory
+{txt}
+{com}. use tomzsurvey         // load tomzsurvey.dta (which is in Stata format)
+{txt}(KN Survey: July 21-25, 2011)
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/gy/1wnbbtnn5zdfw6khbbgcym6w0000gn/T//SD94306.000000"
+{txt}
+{com}. use tomzsurvey, clear  // combines the previous two commands
+{txt}(KN Survey: July 21-25, 2011)
+
+{com}. describe               // describes contents
+
+{txt}Contains data from {res}tomzsurvey.dta
+{txt} Observations:{res}         1,191                  KN Survey: July 21-25, 2011
+{txt}    Variables:{res}             7                  23 Jul 2013 12:58
+{txt}{hline}
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+{hline}
+{p 0 48}{res}{bind:id             }{txt}{bind: float   }{bind:%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}Respondent ID number{p_end}
+{p 0 48}{bind:male           }{txt}{bind: byte    }{bind:%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}Male respondent{p_end}
+{p 0 48}{bind:age            }{txt}{bind: byte    }{bind:%8.0g     }{space 1}{bind:LABB     }{bind:  }{res}{res}Age in years{p_end}
+{p 0 48}{bind:education      }{txt}{bind: byte    }{bind:%8.0g     }{space 1}{bind:ppeducat }{bind:  }{res}{res}education (categorical){p_end}
+{p 0 48}{bind:party          }{txt}{bind: byte    }{bind:%11.0g    }{space 1}{bind:party    }{bind:  }{res}{res}Party ID{p_end}
+{p 0 48}{bind:dealdebt       }{txt}{bind: byte    }{bind:%12.0g    }{space 1}{bind:dealdebt }{bind:  }{res}{res}How to deal with debt?{p_end}
+{p 0 48}{bind:tea            }{txt}{bind: byte    }{bind:%19.0g    }{space 1}{bind:tea      }{bind:  }{res}{res}View of the tea party{p_end}
+{txt}{hline}
+Sorted by: 
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/gy/1wnbbtnn5zdfw6khbbgcym6w0000gn/T//SD94306.000000"
+{txt}
+{com}. import excel tomzsurvey.xlsx, firstrow clear // import Excel. First row has var names
+{res}{text}(7 vars, 1,191 obs)
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/gy/1wnbbtnn5zdfw6khbbgcym6w0000gn/T//SD94306.000000"
+{txt}
+{com}. import excel tomzsurvey.xlsx, firstrow clear sheet("tomzsurvey") // specify which sheet to read
+{res}{text}(7 vars, 1,191 obs)
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/gy/1wnbbtnn5zdfw6khbbgcym6w0000gn/T//SD94306.000000"
+{txt}
+{com}. import delimited using tomzsurvey.csv, clear // load comma-separated file
+{res}{txt}(encoding automatically selected: ISO-8859-1)
+{text}(7 vars, 1,191 obs)
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/gy/1wnbbtnn5zdfw6khbbgcym6w0000gn/T//SD94306.000000"
+{txt}
+{com}. import delimited using tomzsurvey.tab, clear // load tab-delimited file
+{res}{txt}(encoding automatically selected: ISO-8859-1)
+{text}(7 vars, 1,191 obs)
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/gy/1wnbbtnn5zdfw6khbbgcym6w0000gn/T//SD94306.000000"
+{txt}
+{com}. cf _all using tomzsurvey.dta  // compare current version to Stata version
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/gy/1wnbbtnn5zdfw6khbbgcym6w0000gn/T//SD94306.000000"
+{txt}
+{com}. describe using tomzsurvey-right // describe contents of right-side dataset
+
+{txt}Contains data                                 {res}KN Survey: July 21-25, 2011
+{txt} Observations:{res}         1,191                  23 Jul 2013 12:58
+{txt}    Variables:{res}             4                  
+{txt}{hline}
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+{hline}
+{p 0 48}{res}{bind:id             }{txt}{bind: float   }{bind:%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}Respondent ID number{p_end}
+{p 0 48}{bind:party          }{txt}{bind: byte    }{bind:%11.0g    }{space 1}{bind:party    }{bind:  }{res}{res}Party ID{p_end}
+{p 0 48}{bind:dealdebt       }{txt}{bind: byte    }{bind:%12.0g    }{space 1}{bind:dealdebt }{bind:  }{res}{res}How to deal with debt?{p_end}
+{p 0 48}{bind:tea            }{txt}{bind: byte    }{bind:%19.0g    }{space 1}{bind:tea      }{bind:  }{res}{res}View of the tea party{p_end}
+{txt}{hline}
+Sorted by: 
+
+{com}. describe using tomzsurvey-left // describe contents of left-side dttaset
+
+{txt}Contains data                                 {res}KN Survey: July 21-25, 2011
+{txt} Observations:{res}         1,191                  23 Jul 2013 12:58
+{txt}    Variables:{res}             4                  
+{txt}{hline}
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+{hline}
+{p 0 48}{res}{bind:id             }{txt}{bind: float   }{bind:%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}Respondent ID number{p_end}
+{p 0 48}{bind:male           }{txt}{bind: byte    }{bind:%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}Male respondent{p_end}
+{p 0 48}{bind:age            }{txt}{bind: byte    }{bind:%8.0g     }{space 1}{bind:LABB     }{bind:  }{res}{res}Age in years{p_end}
+{p 0 48}{bind:education      }{txt}{bind: byte    }{bind:%8.0g     }{space 1}{bind:ppeducat }{bind:  }{res}{res}education (categorical){p_end}
+{txt}{hline}
+Sorted by: 
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/gy/1wnbbtnn5zdfw6khbbgcym6w0000gn/T//SD94306.000000"
+{txt}
+{com}. use tomzsurvey-left, clear     // load the "left-side" dataset
+{txt}(KN Survey: July 21-25, 2011)
+
+{com}. merge 1:1 id using tomzsurvey-right // merge left with right based on "id"
+{res}
+{txt}{col 5}Result{col 33}Number of obs
+{col 5}{hline 41}
+{col 5}Not matched{col 30}{res}               0
+{txt}{col 5}Matched{col 30}{res}           1,191{txt}  (_merge==3)
+{col 5}{hline 41}
+
+{com}. describe                       // describe the new dataset (full set of vars)
+
+{txt}Contains data from {res}tomzsurvey-left.dta
+{txt} Observations:{res}         1,191                  KN Survey: July 21-25, 2011
+{txt}    Variables:{res}             8                  23 Jul 2013 12:58
+{txt}{hline}
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+{hline}
+{p 0 48}{res}{bind:id             }{txt}{bind: float   }{bind:%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}Respondent ID number{p_end}
+{p 0 48}{bind:male           }{txt}{bind: byte    }{bind:%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}Male respondent{p_end}
+{p 0 48}{bind:age            }{txt}{bind: byte    }{bind:%8.0g     }{space 1}{bind:LABB     }{bind:  }{res}{res}Age in years{p_end}
+{p 0 48}{bind:education      }{txt}{bind: byte    }{bind:%8.0g     }{space 1}{bind:ppeducat }{bind:  }{res}{res}education (categorical){p_end}
+{p 0 48}{bind:party          }{txt}{bind: byte    }{bind:%11.0g    }{space 1}{bind:party    }{bind:  }{res}{res}Party ID{p_end}
+{p 0 48}{bind:dealdebt       }{txt}{bind: byte    }{bind:%12.0g    }{space 1}{bind:dealdebt }{bind:  }{res}{res}How to deal with debt?{p_end}
+{p 0 48}{bind:tea            }{txt}{bind: byte    }{bind:%19.0g    }{space 1}{bind:tea      }{bind:  }{res}{res}View of the tea party{p_end}
+{p 0 48}{bind:_merge         }{txt}{bind: byte    }{bind:%23.0g    }{space 1}{bind:_merge   }{bind:  }{res}{res}Matching result from merge{p_end}
+{txt}{hline}
+Sorted by: {res}id
+{txt}     Note: {res}Dataset has changed since last saved.
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/gy/1wnbbtnn5zdfw6khbbgcym6w0000gn/T//SD94306.000000"
+{txt}
+{com}. use tomzsurvey-rightmiss, clear // load dataset with missing respondents
+{txt}(KN Survey: July 21-25, 2011)
+
+{com}. summarize                       // summarize dataset with missing respondents
+
+{txt}    Variable {c |}        Obs        Mean    Std. dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 10}id {c |}{res}        945     593.346    343.4117          2       1190
+{txt}{space 7}party {c |}{res}        945    1.914286    .7702473          1          3
+{txt}{space 4}dealdebt {c |}{res}        945    1.833862    .9660094          1          3
+{txt}{space 9}tea {c |}{res}        945    .3354497    .4723975          0          1
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/gy/1wnbbtnn5zdfw6khbbgcym6w0000gn/T//SD94306.000000"
+{txt}
+{com}. use tomzsurvey-left, clear      // load the "left-side" dataset
+{txt}(KN Survey: July 21-25, 2011)
+
+{com}. merge 1:1 id using tomzsurvey-rightmiss // merge with right that has missing dta
+{res}
+{txt}{col 5}Result{col 33}Number of obs
+{col 5}{hline 41}
+{col 5}Not matched{col 30}{res}             246
+{txt}{col 9}from master{col 30}{res}             246{txt}  (_merge==1)
+{col 9}from using{col 30}{res}               0{txt}  (_merge==2)
+
+{col 5}Matched{col 30}{res}             945{txt}  (_merge==3)
+{col 5}{hline 41}
+
+{com}. summarize                    // summarize the new dataset (some missing vals)
+
+{txt}    Variable {c |}        Obs        Mean    Std. dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 10}id {c |}{res}      1,191         596    343.9564          1       1191
+{txt}{space 8}male {c |}{res}      1,191    .4962217    .5001958          0          1
+{txt}{space 9}age {c |}{res}      1,191    51.30814    16.62781         18         91
+{txt}{space 3}education {c |}{res}      1,191    3.050378    .9005028          1          4
+{txt}{space 7}party {c |}{res}        945    1.914286    .7702473          1          3
+{txt}{hline 13}{c +}{hline 57}
+{space 4}dealdebt {c |}{res}        945    1.833862    .9660094          1          3
+{txt}{space 9}tea {c |}{res}        945    .3354497    .4723975          0          1
+{txt}{space 6}_merge {c |}{res}      1,191    2.586902    .8099983          1          3
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. tab
+{err}varlist required
+{txt}{search r(100), local:r(100);}
+
+{com}. tab _merge
+
+   {txt}Matching result from {c |}
+                  merge {c |}      Freq.     Percent        Cum.
+{hline 24}{c +}{hline 35}
+        Master only (1) {c |}{res}        246       20.65       20.65
+{txt}            Matched (3) {c |}{res}        945       79.35      100.00
+{txt}{hline 24}{c +}{hline 35}
+                  Total {c |}{res}      1,191      100.00
+
+{com}. do "/var/folders/gy/1wnbbtnn5zdfw6khbbgcym6w0000gn/T//SD94306.000000"
+{txt}
+{com}. describe using tomzsurvey-top // describe "top" portion of the dataset (N=600)
+
+{txt}Contains data                                 {res}KN Survey: July 21-25, 2011
+{txt} Observations:{res}           600                  23 Jul 2013 12:58
+{txt}    Variables:{res}             7                  
+{txt}{hline}
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+{hline}
+{p 0 48}{res}{bind:id             }{txt}{bind: float   }{bind:%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}Respondent ID number{p_end}
+{p 0 48}{bind:male           }{txt}{bind: byte    }{bind:%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}Male respondent{p_end}
+{p 0 48}{bind:age            }{txt}{bind: byte    }{bind:%8.0g     }{space 1}{bind:LABB     }{bind:  }{res}{res}Age in years{p_end}
+{p 0 48}{bind:education      }{txt}{bind: byte    }{bind:%8.0g     }{space 1}{bind:ppeducat }{bind:  }{res}{res}education (categorical){p_end}
+{p 0 48}{bind:party          }{txt}{bind: byte    }{bind:%11.0g    }{space 1}{bind:party    }{bind:  }{res}{res}Party ID{p_end}
+{p 0 48}{bind:dealdebt       }{txt}{bind: byte    }{bind:%12.0g    }{space 1}{bind:dealdebt }{bind:  }{res}{res}How to deal with debt?{p_end}
+{p 0 48}{bind:tea            }{txt}{bind: byte    }{bind:%19.0g    }{space 1}{bind:tea      }{bind:  }{res}{res}View of the tea party{p_end}
+{txt}{hline}
+Sorted by: 
+
+{com}. describe using tomzsurvey-bottom // describe "bottom" portion of the dataset
+
+{txt}Contains data                                 {res}KN Survey: July 21-25, 2011
+{txt} Observations:{res}           591                  23 Jul 2013 12:58
+{txt}    Variables:{res}             7                  
+{txt}{hline}
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+{hline}
+{p 0 48}{res}{bind:id             }{txt}{bind: float   }{bind:%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}Respondent ID number{p_end}
+{p 0 48}{bind:male           }{txt}{bind: byte    }{bind:%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}Male respondent{p_end}
+{p 0 48}{bind:age            }{txt}{bind: byte    }{bind:%8.0g     }{space 1}{bind:LABB     }{bind:  }{res}{res}Age in years{p_end}
+{p 0 48}{bind:education      }{txt}{bind: byte    }{bind:%8.0g     }{space 1}{bind:ppeducat }{bind:  }{res}{res}education (categorical){p_end}
+{p 0 48}{bind:party          }{txt}{bind: byte    }{bind:%11.0g    }{space 1}{bind:party    }{bind:  }{res}{res}Party ID{p_end}
+{p 0 48}{bind:dealdebt       }{txt}{bind: byte    }{bind:%12.0g    }{space 1}{bind:dealdebt }{bind:  }{res}{res}How to deal with debt?{p_end}
+{p 0 48}{bind:tea            }{txt}{bind: byte    }{bind:%19.0g    }{space 1}{bind:tea      }{bind:  }{res}{res}View of the tea party{p_end}
+{txt}{hline}
+Sorted by: 
+
+{com}. use tomzsurvey-top, clear    // load the "top" portion of the dataset
+{txt}(KN Survey: July 21-25, 2011)
+
+{com}. append using tomzsurvey-bottom // append the bottom portion of the dataset
+{txt}(label {bf:{txt}party} already defined)
+(label {bf:{txt}tea} already defined)
+(label {bf:{txt}dealdebt} already defined)
+(label {bf:{txt}ppeducat} already defined)
+(label {bf:{txt}LABB} already defined)
+
+{com}. describe                     // describe the new dataset (now N = 1,191)
+
+{txt}Contains data from {res}tomzsurvey-top.dta
+{txt} Observations:{res}         1,191                  KN Survey: July 21-25, 2011
+{txt}    Variables:{res}             7                  23 Jul 2013 12:58
+{txt}{hline}
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+{hline}
+{p 0 48}{res}{bind:id             }{txt}{bind: float   }{bind:%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}Respondent ID number{p_end}
+{p 0 48}{bind:male           }{txt}{bind: byte    }{bind:%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}Male respondent{p_end}
+{p 0 48}{bind:age            }{txt}{bind: byte    }{bind:%8.0g     }{space 1}{bind:LABB     }{bind:  }{res}{res}Age in years{p_end}
+{p 0 48}{bind:education      }{txt}{bind: byte    }{bind:%8.0g     }{space 1}{bind:ppeducat }{bind:  }{res}{res}education (categorical){p_end}
+{p 0 48}{bind:party          }{txt}{bind: byte    }{bind:%11.0g    }{space 1}{bind:party    }{bind:  }{res}{res}Party ID{p_end}
+{p 0 48}{bind:dealdebt       }{txt}{bind: byte    }{bind:%12.0g    }{space 1}{bind:dealdebt }{bind:  }{res}{res}How to deal with debt?{p_end}
+{p 0 48}{bind:tea            }{txt}{bind: byte    }{bind:%19.0g    }{space 1}{bind:tea      }{bind:  }{res}{res}View of the tea party{p_end}
+{txt}{hline}
+Sorted by: 
+     Note: {res}Dataset has changed since last saved.
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/gy/1wnbbtnn5zdfw6khbbgcym6w0000gn/T//SD94306.000000"
+{txt}
+{com}. * appending data with extra variables
+. describe using tomzsurvey-bottom-extra  // describe dataset with extra vars
+
+{txt}Contains data                                 {res}KN Survey: July 21-25, 2011
+{txt} Observations:{res}           591                  26 Jun 2015 09:51
+{txt}    Variables:{res}             8                  
+{txt}{hline}
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+{hline}
+{p 0 48}{res}{bind:id             }{txt}{bind: float   }{bind:%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}Respondent ID number{p_end}
+{p 0 48}{bind:male           }{txt}{bind: byte    }{bind:%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}Male respondent{p_end}
+{p 0 48}{bind:age            }{txt}{bind: byte    }{bind:%8.0g     }{space 1}{bind:LABB     }{bind:  }{res}{res}Age in years{p_end}
+{p 0 48}{bind:education      }{txt}{bind: byte    }{bind:%8.0g     }{space 1}{bind:ppeducat }{bind:  }{res}{res}education (categorical){p_end}
+{p 0 48}{bind:party          }{txt}{bind: byte    }{bind:%11.0g    }{space 1}{bind:party    }{bind:  }{res}{res}Party ID{p_end}
+{p 0 48}{bind:dealdebt       }{txt}{bind: byte    }{bind:%12.0g    }{space 1}{bind:dealdebt }{bind:  }{res}{res}How to deal with debt?{p_end}
+{p 0 48}{bind:tea            }{txt}{bind: byte    }{bind:%19.0g    }{space 1}{bind:tea      }{bind:  }{res}{res}View of the tea party{p_end}
+{p 0 48}{bind:wave           }{txt}{bind: float   }{bind:%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}{p_end}
+{txt}{hline}
+Sorted by: 
+
+{com}. use tomzsurvey-top, clear    // load the top again
+{txt}(KN Survey: July 21-25, 2011)
+
+{com}. append using tomzsurvey-bottom-extra // append the bottom, with extra vars
+{txt}(label {bf:{txt}LABB} already defined)
+(label {bf:{txt}ppeducat} already defined)
+(label {bf:{txt}dealdebt} already defined)
+(label {bf:{txt}tea} already defined)
+(label {bf:{txt}party} already defined)
+
+{com}. summarize                    // summarize the new dataset
+
+{txt}    Variable {c |}        Obs        Mean    Std. dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 10}id {c |}{res}      1,191         596    343.9564          1       1191
+{txt}{space 8}male {c |}{res}      1,191    .4962217    .5001958          0          1
+{txt}{space 9}age {c |}{res}      1,191    51.30814    16.62781         18         91
+{txt}{space 3}education {c |}{res}      1,191    3.050378    .9005028          1          4
+{txt}{space 7}party {c |}{res}      1,191    1.928631    .7707541          1          3
+{txt}{hline 13}{c +}{hline 57}
+{space 4}dealdebt {c |}{res}      1,191    1.812762    .9602372          1          3
+{txt}{space 9}tea {c |}{res}      1,191    .3350126    .4721931          0          1
+{txt}{space 8}wave {c |}{res}        591           2           0          2          2
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/gy/1wnbbtnn5zdfw6khbbgcym6w0000gn/T//SD94306.000000"
+{txt}
+{com}. use tomzsurvey, clear          // load the dataset
+{txt}(KN Survey: July 21-25, 2011)
+
+{com}. summarize                      // summarize vars
+
+{txt}    Variable {c |}        Obs        Mean    Std. dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 10}id {c |}{res}      1,191         596    343.9564          1       1191
+{txt}{space 8}male {c |}{res}      1,191    .4962217    .5001958          0          1
+{txt}{space 9}age {c |}{res}      1,191    51.30814    16.62781         18         91
+{txt}{space 3}education {c |}{res}      1,191    3.050378    .9005028          1          4
+{txt}{space 7}party {c |}{res}      1,191    1.928631    .7707541          1          3
+{txt}{hline 13}{c +}{hline 57}
+{space 4}dealdebt {c |}{res}      1,191    1.812762    .9602372          1          3
+{txt}{space 9}tea {c |}{res}      1,191    .3350126    .4721931          0          1
+{txt}
+{com}. codebook, compact              // display a codebook
+{res}
+{txt}Variable    Obs Unique      Mean  Min   Max  Label
+{txt}{hline 144}
+{txt}id       {res}  1191   1191       596    1  1191  {txt}Respondent ID number
+{txt}male     {res}  1191      2  .4962217    0     1  {txt}Male respondent
+{txt}age      {res}  1191     73  51.30814   18    91  {txt}Age in years
+{txt}education{res}  1191      4  3.050378    1     4  {txt}education (categorical)
+{txt}party    {res}  1191      3  1.928631    1     3  {txt}Party ID
+{txt}dealdebt {res}  1191      3  1.812762    1     3  {txt}How to deal with debt?
+{txt}tea      {res}  1191      2  .3350126    0     1  {txt}View of the tea party
+{txt}{hline 144}
+
+{com}. label list                     // list value labels and their contents
+{txt}party:
+{res}           1 Democrat
+           2 Independent
+           3 Republican
+{txt}tea:
+{res}           0 Neutral or Negative
+           1 Positive
+{txt}dealdebt:
+{res}           1 Cut spending
+           2 Raise taxes
+           3 Both
+{txt}ppeducat:
+{res}          -2 not asked
+          -1 refused
+           1 less than high school
+           2 high school
+           3 some college
+           4 bachelor's degree or higher
+{txt}LABB:
+{res}          -2 not asked
+          -1 refused
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/gy/1wnbbtnn5zdfw6khbbgcym6w0000gn/T//SD94306.000000"
+{txt}
+{com}. generate three = 3              // generate a variable filled with "3"
+{txt}
+{com}. generate pi = _pi               // generate a variable filled with pi
+{txt}
+{com}. generate sequence = _n          // generate sequence 1,2,3,...,N
+{txt}
+{com}. generate decades = age/10       // generate a new variable, age in decades
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/gy/1wnbbtnn5zdfw6khbbgcym6w0000gn/T//SD94306.000000"
+{txt}
+{com}. drop three pi sequence decades  // clean up our mess     
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/gy/1wnbbtnn5zdfw6khbbgcym6w0000gn/T//SD94306.000000"
+{txt}
+{com}. tabulate party                  // existing party variable
+
+   {txt}Party ID {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+   Democrat {c |}{res}        399       33.50       33.50
+{txt}Independent {c |}{res}        478       40.13       73.64
+{txt} Republican {c |}{res}        314       26.36      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      1,191      100.00
+{txt}
+{com}. clonevar party_clone = party    // clones party, including its value labels
+{txt}
+{com}. tabulate party_clone
+
+   {txt}Party ID {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+   Democrat {c |}{res}        399       33.50       33.50
+{txt}Independent {c |}{res}        478       40.13       73.64
+{txt} Republican {c |}{res}        314       26.36      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      1,191      100.00
+{txt}
+{com}. generate party_num = party      // copies party without its value labels
+{txt}
+{com}. tabulate party_num
+
+  {txt}party_num {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          1 {c |}{res}        399       33.50       33.50
+{txt}          2 {c |}{res}        478       40.13       73.64
+{txt}          3 {c |}{res}        314       26.36      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      1,191      100.00
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/gy/1wnbbtnn5zdfw6khbbgcym6w0000gn/T//SD94306.000000"
+{txt}
+{com}. rename party_num repub         // rename a variable
+{res}{txt}
+{com}. recode repub 3=1 1=0 2=0       // recodes 3 to be 1, recodes 1 and 2 to be 0
+{txt}(1,191 changes made to {bf:repub})
+
+{com}. tabulate party repub           // cross-tabulate to check accuracy
+
+            {txt}{c |}         repub
+   Party ID {c |}         0          1 {c |}     Total
+{hline 12}{c +}{hline 22}{c +}{hline 10}
+   Democrat {c |}{res}       399          0 {txt}{c |}{res}       399 
+{txt}Independent {c |}{res}       478          0 {txt}{c |}{res}       478 
+{txt} Republican {c |}{res}         0        314 {txt}{c |}{res}       314 
+{txt}{hline 12}{c +}{hline 22}{c +}{hline 10}
+      Total {c |}{res}       877        314 {txt}{c |}{res}     1,191 
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/gy/1wnbbtnn5zdfw6khbbgcym6w0000gn/T//SD94306.000000"
+{txt}
+{com}. recode party 3=1 1=0 2=0, gen(repub_v2)  // more efficient method
+{txt}(1,191 differences between {bf:party} and {bf:repub_v2})
+
+{com}. tabulate party repub_v2        // cross-tabulate to check accuracy
+
+            {txt}{c |}    RECODE of party
+            {c |}      (Party ID)
+   Party ID {c |}         0          1 {c |}     Total
+{hline 12}{c +}{hline 22}{c +}{hline 10}
+   Democrat {c |}{res}       399          0 {txt}{c |}{res}       399 
+{txt}Independent {c |}{res}       478          0 {txt}{c |}{res}       478 
+{txt} Republican {c |}{res}         0        314 {txt}{c |}{res}       314 
+{txt}{hline 12}{c +}{hline 22}{c +}{hline 10}
+      Total {c |}{res}       877        314 {txt}{c |}{res}     1,191 
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/gy/1wnbbtnn5zdfw6khbbgcym6w0000gn/T//SD94306.000000"
+{txt}
+{com}. label var repub "Is respondent Republican?"          // label the variable
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/gy/1wnbbtnn5zdfw6khbbgcym6w0000gn/T//SD94306.000000"
+{txt}
+{com}. label define repub_label 1 "Republican" 0 "Non-Repub" // define a value label
+{txt}
+{com}. label values repub repub_label                        // assign the value label
+{txt}
+{com}. tabulate repub                                        // tab, showing labels
+
+         {txt}Is {c |}
+ respondent {c |}
+Republican? {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+  Non-Repub {c |}{res}        877       73.64       73.64
+{txt} Republican {c |}{res}        314       26.36      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      1,191      100.00
+{txt}
+{com}. tabulate repub, nolabel                               // tab, suppress labels
+
+         {txt}Is {c |}
+ respondent {c |}
+Republican? {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          0 {c |}{res}        877       73.64       73.64
+{txt}          1 {c |}{res}        314       26.36      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      1,191      100.00
+{txt}
+{com}. drop party_clone repub repub_v2                       // clean up our mess
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/gy/1wnbbtnn5zdfw6khbbgcym6w0000gn/T//SD94306.000000"
+{txt}
+{com}. label define repub_label 1 "Republican" 0 "Non-Repub" // define a value label
+{err}label repub_label already defined
+{txt}{search r(110), local:r(110);}
+
+end of do-file
+
+{search r(110), local:r(110);}
+
+{com}. do "/var/folders/gy/1wnbbtnn5zdfw6khbbgcym6w0000gn/T//SD94306.000000"
+{txt}
+{com}. label define repub_label 1 "Republican" 0 "Non-Repub" // define a value label
+{err}label repub_label already defined
+{txt}{search r(110), local:r(110);}
+
+end of do-file
+
+{search r(110), local:r(110);}
+
+{com}. do "/var/folders/gy/1wnbbtnn5zdfw6khbbgcym6w0000gn/T//SD94306.000000"
+{txt}
+{com}. drop party_clone repub repub_v2                       // clean up our mess
+{err}variable {bf}party_clone{sf} not found
+{txt}{search r(111), local:r(111);}
+
+end of do-file
+
+{search r(111), local:r(111);}
+
+{com}. do "/var/folders/gy/1wnbbtnn5zdfw6khbbgcym6w0000gn/T//SD94306.000000"
+{txt}
+{com}. rename party_num repub         // rename a variable
+{res}{err}variable {bf}party_num{sf} not found
+{txt}{search r(111), local:r(111);}
+
+end of do-file
+
+{search r(111), local:r(111);}
+
+{com}. do "/var/folders/gy/1wnbbtnn5zdfw6khbbgcym6w0000gn/T//SD94306.000000"
+{txt}
+{com}. tabulate party                  // existing party variable
+
+   {txt}Party ID {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+   Democrat {c |}{res}        399       33.50       33.50
+{txt}Independent {c |}{res}        478       40.13       73.64
+{txt} Republican {c |}{res}        314       26.36      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      1,191      100.00
+{txt}
+{com}. clonevar party_clone = party    // clones party, including its value labels
+{txt}
+{com}. tabulate party_clone
+
+   {txt}Party ID {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+   Democrat {c |}{res}        399       33.50       33.50
+{txt}Independent {c |}{res}        478       40.13       73.64
+{txt} Republican {c |}{res}        314       26.36      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      1,191      100.00
+{txt}
+{com}. generate party_num = party      // copies party without its value labels
+{txt}
+{com}. tabulate party_num
+
+  {txt}party_num {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          1 {c |}{res}        399       33.50       33.50
+{txt}          2 {c |}{res}        478       40.13       73.64
+{txt}          3 {c |}{res}        314       26.36      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      1,191      100.00
+{txt}
+{com}. 
+. * Make an indicator (dummy) variable for Republicans
+. rename party_num repub         // rename a variable
+{res}{txt}
+{com}. recode repub 3=1 1=0 2=0       // recodes 3 to be 1, recodes 1 and 2 to be 0
+{txt}(1,191 changes made to {bf:repub})
+
+{com}. tabulate party repub           // cross-tabulate to check accuracy
+
+            {txt}{c |}         repub
+   Party ID {c |}         0          1 {c |}     Total
+{hline 12}{c +}{hline 22}{c +}{hline 10}
+   Democrat {c |}{res}       399          0 {txt}{c |}{res}       399 
+{txt}Independent {c |}{res}       478          0 {txt}{c |}{res}       478 
+{txt} Republican {c |}{res}         0        314 {txt}{c |}{res}       314 
+{txt}{hline 12}{c +}{hline 22}{c +}{hline 10}
+      Total {c |}{res}       877        314 {txt}{c |}{res}     1,191 
+{txt}
+{com}. 
+. * More efficient way to make an indicator variable for Republicans
+. recode party 3=1 1=0 2=0, gen(repub_v2)  // more efficient method
+{txt}(1,191 differences between {bf:party} and {bf:repub_v2})
+
+{com}. tabulate party repub_v2        // cross-tabulate to check accuracy
+
+            {txt}{c |}    RECODE of party
+            {c |}      (Party ID)
+   Party ID {c |}         0          1 {c |}     Total
+{hline 12}{c +}{hline 22}{c +}{hline 10}
+   Democrat {c |}{res}       399          0 {txt}{c |}{res}       399 
+{txt}Independent {c |}{res}       478          0 {txt}{c |}{res}       478 
+{txt} Republican {c |}{res}         0        314 {txt}{c |}{res}       314 
+{txt}{hline 12}{c +}{hline 22}{c +}{hline 10}
+      Total {c |}{res}       877        314 {txt}{c |}{res}     1,191 
+{txt}
+{com}. 
+. * labels for our new variable
+. label var repub "Is respondent Republican?"          // label the variable
+{txt}
+{com}. label define repub_label 1 "Republican" 0 "Non-Repub" // define a value label
+{err}label repub_label already defined
+{txt}{search r(110), local:r(110);}
+
+end of do-file
+
+{search r(110), local:r(110);}
+
+{com}. do "/var/folders/gy/1wnbbtnn5zdfw6khbbgcym6w0000gn/T//SD94306.000000"
+{txt}
+{com}. egen age_cat = cut(age), group(3)  // split the sample in to three groups
+{txt}
+{com}. tabulate age_cat
+
+    {txt}age_cat {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          0 {c |}{res}        388       32.58       32.58
+{txt}          1 {c |}{res}        401       33.67       66.25
+{txt}          2 {c |}{res}        402       33.75      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      1,191      100.00
+{txt}
+{com}. bysort age_cat: summarize age
+
+{txt}{hline}
+-> age_cat = 0
+
+    Variable {c |}        Obs        Mean    Std. dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 9}age {c |}{res}        388    31.66495    8.042273         18         44
+
+{txt}{hline}
+-> age_cat = 1
+
+    Variable {c |}        Obs        Mean    Std. dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 9}age {c |}{res}        401    52.44638    4.103382         45         59
+
+{txt}{hline}
+-> age_cat = 2
+
+    Variable {c |}        Obs        Mean    Std. dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 9}age {c |}{res}        402    69.13184    6.939355         60         91
+
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/gy/1wnbbtnn5zdfw6khbbgcym6w0000gn/T//SD94306.000000"
+{txt}
+{com}. use tomzsurvey-mvs, clear  // load a version with missing values
+{txt}(KN Survey: July 21-25, 2011)
+
+{com}. describe
+
+{txt}Contains data from {res}tomzsurvey-mvs.dta
+{txt} Observations:{res}         1,191                  KN Survey: July 21-25, 2011
+{txt}    Variables:{res}             7                  26 Jun 2015 11:29
+{txt}{hline}
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+{hline}
+{p 0 48}{res}{bind:id             }{txt}{bind: float   }{bind:%9.0g     }{space 1}{bind:         }{bind:  }{res}{res}Respondent ID number{p_end}
+{p 0 48}{bind:male           }{txt}{bind: str1    }{bind:%9s       }{space 1}{bind:         }{bind:  }{res}{res}Male respondent{p_end}
+{p 0 48}{bind:age            }{txt}{bind: byte    }{bind:%8.0g     }{space 1}{bind:LABB     }{bind:  }{res}{res}Age in years{p_end}
+{p 0 48}{bind:education      }{txt}{bind: byte    }{bind:%8.0g     }{space 1}{bind:ppeducat }{bind:  }{res}{res}education (categorical){p_end}
+{p 0 48}{bind:partyname      }{txt}{bind: str11   }{bind:%11s      }{space 1}{bind:         }{bind:  }{res}{res}Party ID{p_end}
+{p 0 48}{bind:dealdebt       }{txt}{bind: byte    }{bind:%12.0g    }{space 1}{bind:dealdebt }{bind:  }{res}{res}How to deal with debt?{p_end}
+{p 0 48}{bind:tea            }{txt}{bind: byte    }{bind:%19.0g    }{space 1}{bind:tea      }{bind:  }{res}{res}View of the tea party{p_end}
+{txt}{hline}
+Sorted by: 
+
+{com}. summarize
+
+{txt}    Variable {c |}        Obs        Mean    Std. dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 10}id {c |}{res}      1,191         596    343.9564          1       1191
+{txt}{space 8}male {c |}{res}          0
+{txt}{space 9}age {c |}{res}      1,191    35.34845    47.81405        -99         91
+{txt}{space 3}education {c |}{res}      1,191    3.050378    .9005028          1          4
+{txt}{space 3}partyname {c |}{res}          0
+{txt}{hline 13}{c +}{hline 57}
+{space 4}dealdebt {c |}{res}      1,191    1.812762    .9602372          1          3
+{txt}{space 9}tea {c |}{res}      1,191    .3350126    .4721931          0          1
+{txt}
+{com}. tabulate age
+
+     {txt}Age in {c |}
+      years {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+        -99 {c |}{res}         53        4.45        4.45
+{txt}        -88 {c |}{res}         79        6.63       11.08
+{txt}         18 {c |}{res}          5        0.42       11.50
+{txt}         19 {c |}{res}         15        1.26       12.76
+{txt}         20 {c |}{res}         19        1.60       14.36
+{txt}         21 {c |}{res}         19        1.60       15.95
+{txt}         22 {c |}{res}         16        1.34       17.30
+{txt}         23 {c |}{res}          9        0.76       18.05
+{txt}         24 {c |}{res}          7        0.59       18.64
+{txt}         25 {c |}{res}         12        1.01       19.65
+{txt}         26 {c |}{res}          4        0.34       19.98
+{txt}         27 {c |}{res}         12        1.01       20.99
+{txt}         28 {c |}{res}         13        1.09       22.08
+{txt}         29 {c |}{res}         11        0.92       23.01
+{txt}         30 {c |}{res}         10        0.84       23.85
+{txt}         31 {c |}{res}         16        1.34       25.19
+{txt}         32 {c |}{res}          9        0.76       25.94
+{txt}         33 {c |}{res}         18        1.51       27.46
+{txt}         34 {c |}{res}         12        1.01       28.46
+{txt}         35 {c |}{res}         10        0.84       29.30
+{txt}         36 {c |}{res}          9        0.76       30.06
+{txt}         37 {c |}{res}          9        0.76       30.81
+{txt}         38 {c |}{res}         10        0.84       31.65
+{txt}         39 {c |}{res}         18        1.51       33.17
+{txt}         40 {c |}{res}         20        1.68       34.84
+{txt}         41 {c |}{res}         19        1.60       36.44
+{txt}         42 {c |}{res}         15        1.26       37.70
+{txt}         43 {c |}{res}         17        1.43       39.13
+{txt}         44 {c |}{res}         10        0.84       39.97
+{txt}         45 {c |}{res}         15        1.26       41.23
+{txt}         46 {c |}{res}         15        1.26       42.49
+{txt}         47 {c |}{res}         17        1.43       43.91
+{txt}         48 {c |}{res}         22        1.85       45.76
+{txt}         49 {c |}{res}         37        3.11       48.87
+{txt}         50 {c |}{res}         16        1.34       50.21
+{txt}         51 {c |}{res}         18        1.51       51.72
+{txt}         52 {c |}{res}         35        2.94       54.66
+{txt}         53 {c |}{res}         32        2.69       57.35
+{txt}         54 {c |}{res}         26        2.18       59.53
+{txt}         55 {c |}{res}         31        2.60       62.13
+{txt}         56 {c |}{res}         22        1.85       63.98
+{txt}         57 {c |}{res}         23        1.93       65.91
+{txt}         58 {c |}{res}         19        1.60       67.51
+{txt}         59 {c |}{res}         32        2.69       70.19
+{txt}         60 {c |}{res}         20        1.68       71.87
+{txt}         61 {c |}{res}         24        2.02       73.89
+{txt}         62 {c |}{res}         23        1.93       75.82
+{txt}         63 {c |}{res}         18        1.51       77.33
+{txt}         64 {c |}{res}         33        2.77       80.10
+{txt}         65 {c |}{res}         22        1.85       81.95
+{txt}         66 {c |}{res}         16        1.34       83.29
+{txt}         67 {c |}{res}         18        1.51       84.80
+{txt}         68 {c |}{res}         19        1.60       86.40
+{txt}         69 {c |}{res}         20        1.68       88.08
+{txt}         70 {c |}{res}         11        0.92       89.00
+{txt}         71 {c |}{res}         18        1.51       90.51
+{txt}         72 {c |}{res}          8        0.67       91.18
+{txt}         73 {c |}{res}         14        1.18       92.36
+{txt}         74 {c |}{res}          8        0.67       93.03
+{txt}         75 {c |}{res}          9        0.76       93.79
+{txt}         76 {c |}{res}         11        0.92       94.71
+{txt}         77 {c |}{res}          9        0.76       95.47
+{txt}         78 {c |}{res}          7        0.59       96.05
+{txt}         79 {c |}{res}         10        0.84       96.89
+{txt}         80 {c |}{res}         10        0.84       97.73
+{txt}         81 {c |}{res}          5        0.42       98.15
+{txt}         82 {c |}{res}          3        0.25       98.40
+{txt}         83 {c |}{res}          8        0.67       99.08
+{txt}         84 {c |}{res}          2        0.17       99.24
+{txt}         85 {c |}{res}          4        0.34       99.58
+{txt}         86 {c |}{res}          1        0.08       99.66
+{txt}         87 {c |}{res}          1        0.08       99.75
+{txt}         88 {c |}{res}          1        0.08       99.83
+{txt}         90 {c |}{res}          1        0.08       99.92
+{txt}         91 {c |}{res}          1        0.08      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      1,191      100.00
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/gy/1wnbbtnn5zdfw6khbbgcym6w0000gn/T//SD94306.000000"
+{txt}
+{com}. mvdecode age, mv(-88 -99)  // change -88 and -99 to missing
+         {txt}age:{res}{col 15}132{txt} missing values generated
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/gy/1wnbbtnn5zdfw6khbbgcym6w0000gn/T//SD94306.000000"
+{txt}
+{com}. tabulate age               // tabulate, suppressing missing values
+
+     {txt}Age in {c |}
+      years {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+         18 {c |}{res}          5        0.47        0.47
+{txt}         19 {c |}{res}         15        1.42        1.89
+{txt}         20 {c |}{res}         19        1.79        3.68
+{txt}         21 {c |}{res}         19        1.79        5.48
+{txt}         22 {c |}{res}         16        1.51        6.99
+{txt}         23 {c |}{res}          9        0.85        7.84
+{txt}         24 {c |}{res}          7        0.66        8.50
+{txt}         25 {c |}{res}         12        1.13        9.63
+{txt}         26 {c |}{res}          4        0.38       10.01
+{txt}         27 {c |}{res}         12        1.13       11.14
+{txt}         28 {c |}{res}         13        1.23       12.37
+{txt}         29 {c |}{res}         11        1.04       13.41
+{txt}         30 {c |}{res}         10        0.94       14.35
+{txt}         31 {c |}{res}         16        1.51       15.86
+{txt}         32 {c |}{res}          9        0.85       16.71
+{txt}         33 {c |}{res}         18        1.70       18.41
+{txt}         34 {c |}{res}         12        1.13       19.55
+{txt}         35 {c |}{res}         10        0.94       20.49
+{txt}         36 {c |}{res}          9        0.85       21.34
+{txt}         37 {c |}{res}          9        0.85       22.19
+{txt}         38 {c |}{res}         10        0.94       23.14
+{txt}         39 {c |}{res}         18        1.70       24.83
+{txt}         40 {c |}{res}         20        1.89       26.72
+{txt}         41 {c |}{res}         19        1.79       28.52
+{txt}         42 {c |}{res}         15        1.42       29.93
+{txt}         43 {c |}{res}         17        1.61       31.54
+{txt}         44 {c |}{res}         10        0.94       32.48
+{txt}         45 {c |}{res}         15        1.42       33.90
+{txt}         46 {c |}{res}         15        1.42       35.32
+{txt}         47 {c |}{res}         17        1.61       36.92
+{txt}         48 {c |}{res}         22        2.08       39.00
+{txt}         49 {c |}{res}         37        3.49       42.49
+{txt}         50 {c |}{res}         16        1.51       44.00
+{txt}         51 {c |}{res}         18        1.70       45.70
+{txt}         52 {c |}{res}         35        3.31       49.01
+{txt}         53 {c |}{res}         32        3.02       52.03
+{txt}         54 {c |}{res}         26        2.46       54.49
+{txt}         55 {c |}{res}         31        2.93       57.41
+{txt}         56 {c |}{res}         22        2.08       59.49
+{txt}         57 {c |}{res}         23        2.17       61.66
+{txt}         58 {c |}{res}         19        1.79       63.46
+{txt}         59 {c |}{res}         32        3.02       66.48
+{txt}         60 {c |}{res}         20        1.89       68.37
+{txt}         61 {c |}{res}         24        2.27       70.63
+{txt}         62 {c |}{res}         23        2.17       72.80
+{txt}         63 {c |}{res}         18        1.70       74.50
+{txt}         64 {c |}{res}         33        3.12       77.62
+{txt}         65 {c |}{res}         22        2.08       79.70
+{txt}         66 {c |}{res}         16        1.51       81.21
+{txt}         67 {c |}{res}         18        1.70       82.91
+{txt}         68 {c |}{res}         19        1.79       84.70
+{txt}         69 {c |}{res}         20        1.89       86.59
+{txt}         70 {c |}{res}         11        1.04       87.63
+{txt}         71 {c |}{res}         18        1.70       89.33
+{txt}         72 {c |}{res}          8        0.76       90.08
+{txt}         73 {c |}{res}         14        1.32       91.41
+{txt}         74 {c |}{res}          8        0.76       92.16
+{txt}         75 {c |}{res}          9        0.85       93.01
+{txt}         76 {c |}{res}         11        1.04       94.05
+{txt}         77 {c |}{res}          9        0.85       94.90
+{txt}         78 {c |}{res}          7        0.66       95.56
+{txt}         79 {c |}{res}         10        0.94       96.51
+{txt}         80 {c |}{res}         10        0.94       97.45
+{txt}         81 {c |}{res}          5        0.47       97.92
+{txt}         82 {c |}{res}          3        0.28       98.21
+{txt}         83 {c |}{res}          8        0.76       98.96
+{txt}         84 {c |}{res}          2        0.19       99.15
+{txt}         85 {c |}{res}          4        0.38       99.53
+{txt}         86 {c |}{res}          1        0.09       99.62
+{txt}         87 {c |}{res}          1        0.09       99.72
+{txt}         88 {c |}{res}          1        0.09       99.81
+{txt}         90 {c |}{res}          1        0.09       99.91
+{txt}         91 {c |}{res}          1        0.09      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      1,059      100.00
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/gy/1wnbbtnn5zdfw6khbbgcym6w0000gn/T//SD94306.000000"
+{txt}
+{com}. tabulate age, miss         // tabulate, showing missing values
+
+     {txt}Age in {c |}
+      years {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+         18 {c |}{res}          5        0.42        0.42
+{txt}         19 {c |}{res}         15        1.26        1.68
+{txt}         20 {c |}{res}         19        1.60        3.27
+{txt}         21 {c |}{res}         19        1.60        4.87
+{txt}         22 {c |}{res}         16        1.34        6.21
+{txt}         23 {c |}{res}          9        0.76        6.97
+{txt}         24 {c |}{res}          7        0.59        7.56
+{txt}         25 {c |}{res}         12        1.01        8.56
+{txt}         26 {c |}{res}          4        0.34        8.90
+{txt}         27 {c |}{res}         12        1.01        9.91
+{txt}         28 {c |}{res}         13        1.09       11.00
+{txt}         29 {c |}{res}         11        0.92       11.92
+{txt}         30 {c |}{res}         10        0.84       12.76
+{txt}         31 {c |}{res}         16        1.34       14.11
+{txt}         32 {c |}{res}          9        0.76       14.86
+{txt}         33 {c |}{res}         18        1.51       16.37
+{txt}         34 {c |}{res}         12        1.01       17.38
+{txt}         35 {c |}{res}         10        0.84       18.22
+{txt}         36 {c |}{res}          9        0.76       18.98
+{txt}         37 {c |}{res}          9        0.76       19.73
+{txt}         38 {c |}{res}         10        0.84       20.57
+{txt}         39 {c |}{res}         18        1.51       22.08
+{txt}         40 {c |}{res}         20        1.68       23.76
+{txt}         41 {c |}{res}         19        1.60       25.36
+{txt}         42 {c |}{res}         15        1.26       26.62
+{txt}         43 {c |}{res}         17        1.43       28.04
+{txt}         44 {c |}{res}         10        0.84       28.88
+{txt}         45 {c |}{res}         15        1.26       30.14
+{txt}         46 {c |}{res}         15        1.26       31.40
+{txt}         47 {c |}{res}         17        1.43       32.83
+{txt}         48 {c |}{res}         22        1.85       34.68
+{txt}         49 {c |}{res}         37        3.11       37.78
+{txt}         50 {c |}{res}         16        1.34       39.13
+{txt}         51 {c |}{res}         18        1.51       40.64
+{txt}         52 {c |}{res}         35        2.94       43.58
+{txt}         53 {c |}{res}         32        2.69       46.26
+{txt}         54 {c |}{res}         26        2.18       48.45
+{txt}         55 {c |}{res}         31        2.60       51.05
+{txt}         56 {c |}{res}         22        1.85       52.90
+{txt}         57 {c |}{res}         23        1.93       54.83
+{txt}         58 {c |}{res}         19        1.60       56.42
+{txt}         59 {c |}{res}         32        2.69       59.11
+{txt}         60 {c |}{res}         20        1.68       60.79
+{txt}         61 {c |}{res}         24        2.02       62.80
+{txt}         62 {c |}{res}         23        1.93       64.74
+{txt}         63 {c |}{res}         18        1.51       66.25
+{txt}         64 {c |}{res}         33        2.77       69.02
+{txt}         65 {c |}{res}         22        1.85       70.86
+{txt}         66 {c |}{res}         16        1.34       72.21
+{txt}         67 {c |}{res}         18        1.51       73.72
+{txt}         68 {c |}{res}         19        1.60       75.31
+{txt}         69 {c |}{res}         20        1.68       76.99
+{txt}         70 {c |}{res}         11        0.92       77.92
+{txt}         71 {c |}{res}         18        1.51       79.43
+{txt}         72 {c |}{res}          8        0.67       80.10
+{txt}         73 {c |}{res}         14        1.18       81.28
+{txt}         74 {c |}{res}          8        0.67       81.95
+{txt}         75 {c |}{res}          9        0.76       82.70
+{txt}         76 {c |}{res}         11        0.92       83.63
+{txt}         77 {c |}{res}          9        0.76       84.38
+{txt}         78 {c |}{res}          7        0.59       84.97
+{txt}         79 {c |}{res}         10        0.84       85.81
+{txt}         80 {c |}{res}         10        0.84       86.65
+{txt}         81 {c |}{res}          5        0.42       87.07
+{txt}         82 {c |}{res}          3        0.25       87.32
+{txt}         83 {c |}{res}          8        0.67       87.99
+{txt}         84 {c |}{res}          2        0.17       88.16
+{txt}         85 {c |}{res}          4        0.34       88.50
+{txt}         86 {c |}{res}          1        0.08       88.58
+{txt}         87 {c |}{res}          1        0.08       88.66
+{txt}         88 {c |}{res}          1        0.08       88.75
+{txt}         90 {c |}{res}          1        0.08       88.83
+{txt}         91 {c |}{res}          1        0.08       88.92
+{txt}          . {c |}{res}        132       11.08      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      1,191      100.00
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/gy/1wnbbtnn5zdfw6khbbgcym6w0000gn/T//SD94306.000000"
+{txt}
+{com}. mvencode age, mv(-999)     // change missing to -999
+         {txt}age:{col 15}{res}132{txt} missing values recoded
+{col 15}(recast to int)
+
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/gy/1wnbbtnn5zdfw6khbbgcym6w0000gn/T//SD94306.000000"
+{txt}
+{com}. tabulate age               // tabulate, showing the -999's
+
+     {txt}Age in {c |}
+      years {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+       -999 {c |}{res}        132       11.08       11.08
+{txt}         18 {c |}{res}          5        0.42       11.50
+{txt}         19 {c |}{res}         15        1.26       12.76
+{txt}         20 {c |}{res}         19        1.60       14.36
+{txt}         21 {c |}{res}         19        1.60       15.95
+{txt}         22 {c |}{res}         16        1.34       17.30
+{txt}         23 {c |}{res}          9        0.76       18.05
+{txt}         24 {c |}{res}          7        0.59       18.64
+{txt}         25 {c |}{res}         12        1.01       19.65
+{txt}         26 {c |}{res}          4        0.34       19.98
+{txt}         27 {c |}{res}         12        1.01       20.99
+{txt}         28 {c |}{res}         13        1.09       22.08
+{txt}         29 {c |}{res}         11        0.92       23.01
+{txt}         30 {c |}{res}         10        0.84       23.85
+{txt}         31 {c |}{res}         16        1.34       25.19
+{txt}         32 {c |}{res}          9        0.76       25.94
+{txt}         33 {c |}{res}         18        1.51       27.46
+{txt}         34 {c |}{res}         12        1.01       28.46
+{txt}         35 {c |}{res}         10        0.84       29.30
+{txt}         36 {c |}{res}          9        0.76       30.06
+{txt}         37 {c |}{res}          9        0.76       30.81
+{txt}         38 {c |}{res}         10        0.84       31.65
+{txt}         39 {c |}{res}         18        1.51       33.17
+{txt}         40 {c |}{res}         20        1.68       34.84
+{txt}         41 {c |}{res}         19        1.60       36.44
+{txt}         42 {c |}{res}         15        1.26       37.70
+{txt}         43 {c |}{res}         17        1.43       39.13
+{txt}         44 {c |}{res}         10        0.84       39.97
+{txt}         45 {c |}{res}         15        1.26       41.23
+{txt}         46 {c |}{res}         15        1.26       42.49
+{txt}         47 {c |}{res}         17        1.43       43.91
+{txt}         48 {c |}{res}         22        1.85       45.76
+{txt}         49 {c |}{res}         37        3.11       48.87
+{txt}         50 {c |}{res}         16        1.34       50.21
+{txt}         51 {c |}{res}         18        1.51       51.72
+{txt}         52 {c |}{res}         35        2.94       54.66
+{txt}         53 {c |}{res}         32        2.69       57.35
+{txt}         54 {c |}{res}         26        2.18       59.53
+{txt}         55 {c |}{res}         31        2.60       62.13
+{txt}         56 {c |}{res}         22        1.85       63.98
+{txt}         57 {c |}{res}         23        1.93       65.91
+{txt}         58 {c |}{res}         19        1.60       67.51
+{txt}         59 {c |}{res}         32        2.69       70.19
+{txt}         60 {c |}{res}         20        1.68       71.87
+{txt}         61 {c |}{res}         24        2.02       73.89
+{txt}         62 {c |}{res}         23        1.93       75.82
+{txt}         63 {c |}{res}         18        1.51       77.33
+{txt}         64 {c |}{res}         33        2.77       80.10
+{txt}         65 {c |}{res}         22        1.85       81.95
+{txt}         66 {c |}{res}         16        1.34       83.29
+{txt}         67 {c |}{res}         18        1.51       84.80
+{txt}         68 {c |}{res}         19        1.60       86.40
+{txt}         69 {c |}{res}         20        1.68       88.08
+{txt}         70 {c |}{res}         11        0.92       89.00
+{txt}         71 {c |}{res}         18        1.51       90.51
+{txt}         72 {c |}{res}          8        0.67       91.18
+{txt}         73 {c |}{res}         14        1.18       92.36
+{txt}         74 {c |}{res}          8        0.67       93.03
+{txt}         75 {c |}{res}          9        0.76       93.79
+{txt}         76 {c |}{res}         11        0.92       94.71
+{txt}         77 {c |}{res}          9        0.76       95.47
+{txt}         78 {c |}{res}          7        0.59       96.05
+{txt}         79 {c |}{res}         10        0.84       96.89
+{txt}         80 {c |}{res}         10        0.84       97.73
+{txt}         81 {c |}{res}          5        0.42       98.15
+{txt}         82 {c |}{res}          3        0.25       98.40
+{txt}         83 {c |}{res}          8        0.67       99.08
+{txt}         84 {c |}{res}          2        0.17       99.24
+{txt}         85 {c |}{res}          4        0.34       99.58
+{txt}         86 {c |}{res}          1        0.08       99.66
+{txt}         87 {c |}{res}          1        0.08       99.75
+{txt}         88 {c |}{res}          1        0.08       99.83
+{txt}         90 {c |}{res}          1        0.08       99.92
+{txt}         91 {c |}{res}          1        0.08      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}      1,191      100.00
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/gy/1wnbbtnn5zdfw6khbbgcym6w0000gn/T//SD94306.000000"
+{txt}
+{com}. codebook male              // numbers were stored as strings
+
+{txt}{hline}
+{res}male{right:Male respondent}
+{txt}{hline}
+
+{col 19}Type: String ({res}str1{txt})
+
+{col 10}Unique values: {res}2{col 51}{txt}Missing "": {res}0{txt}/{res}1,191
+
+{txt}{col 13}Tabulation: Freq.  Value
+{col 20}{res}       600{col 32}"0"
+{col 20}       591{col 32}"1"
+{txt}
+{com}. destring male, replace     // convert them to numeric
+{txt}male: all characters numeric; {res}replaced {txt}as {res}byte
+{txt}
+{com}. codebook male              // confirm the change
+
+{txt}{hline}
+{res}male{right:Male respondent}
+{txt}{hline}
+
+{col 19}Type: Numeric ({res}byte{txt})
+
+{col 18}Range: [{res}0{txt},{res}1{txt}]{col 55}Units: {res}1
+{col 10}{txt}Unique values: {res}2{col 51}{txt}Missing .: {res}0{txt}/{res}1,191
+
+{txt}{col 13}Tabulation: Freq.  Value
+{col 20}{res}       600{col 32}0
+{col 20}       591{col 32}1
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. do "/var/folders/gy/1wnbbtnn5zdfw6khbbgcym6w0000gn/T//SD94306.000000"
+{txt}
+{com}. codebook partyname
+
+{txt}{hline}
+{res}partyname{right:Party ID}
+{txt}{hline}
+
+{col 19}Type: String ({res}str11{txt})
+
+{col 10}Unique values: {res}3{col 51}{txt}Missing "": {res}0{txt}/{res}1,191
+
+{txt}{col 13}Tabulation: Freq.  Value
+{col 20}{res}       399{col 32}"Democrat"
+{col 20}       478{col 32}"Independent"
+{col 20}       314{col 32}"Republican"
+{txt}
+{com}. generate party = .         // initialize to missing
+{txt}(1,191 missing values generated)
+
+{com}. replace party = 1 if partyname == "Democrat"
+{txt}(399 real changes made)
+
+{com}. replace party = 2 if partyname == "Independent"
+{txt}(478 real changes made)
+
+{com}. replace party = 3 if partyname == "Republican"
+{txt}(314 real changes made)
+
+{com}. label define party_label 1 "Democrat" 2 "Independent" 3 "Republican"
+{txt}
+{com}. label values party party_label
+{txt}
+{com}. codebook party
+
+{txt}{hline}
+{res}party{right:(unlabeled)}
+{txt}{hline}
+
+{col 19}Type: Numeric ({res}float{txt})
+{ralign 22:Label}: {res:party_label}
+
+{col 18}Range: [{res}1{txt},{res}3{txt}]{col 55}Units: {res}1
+{col 10}{txt}Unique values: {res}3{col 51}{txt}Missing .: {res}0{txt}/{res}1,191
+
+{txt}{col 13}Tabulation: Freq.   Numeric  Label
+{col 20}{res}       399{col 32}       1{col 42}{txt}Democrat
+{col 20}{res}       478{col 32}       2{col 42}{txt}Independent
+{col 20}{res}       314{col 32}       3{col 42}{txt}Republican
+
+{com}. 
+{txt}end of do-file
+
+{com}. save "tomzsurvey-mvs.dta", replace
+{txt}{p 0 4 2}
+file {bf}
+tomzsurvey-mvs.dta{rm}
+saved
+{p_end}
+
+{com}. exit, clear

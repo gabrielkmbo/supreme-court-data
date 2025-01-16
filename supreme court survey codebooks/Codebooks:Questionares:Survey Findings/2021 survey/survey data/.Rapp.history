@@ -1,0 +1,255 @@
+(1/6)/.3
+(1/6)/.4
+(2/6)/.2
+70*.1 + 40*.3 + 60*.2 + 20*.4
+70*3.33*100 + 40*.56*300 + 60*1.67*200 + 20*.42*400
+(70*3.33*100 + 40*.56*300 + 60*1.67*200 + 20*.42*400)/1000
+600*.83
+60*.4 + 30*.6
+(70*100 + 60*200) / 300
+(70*100 + 60*200 + 40*300 + 20*400) / 1000
+(70*100 + 60*200) / 300
+(40*300 + 20*400)/700
+(70*100 + 40*300)/400
+(60*200 + 20*400)/600
+63*.4*1.25+29*.6*.83
+63*.4 + 29*.6
+70*.1+40*.3+60*.2+20*.4
+(70*100 + 60*200)/300
+(40*300 + 20*400)/700
+.5/.3
+.5/.6
+.5/.7
+400*1.67
+300*1.67
+700*.71
+600*.83
+600/500
+500/600
+63*.4+29*.6
+1.25*.4
+.6*.83
+60*.4 + 30*.6
+(100-30.38)/90
+10*.77 + 100*.23
+(100-30.38)/75
+(100-30.38)/50
+(100-30.38)/80
+20*.87 + 100*.17
+(100-30.38)/60
+(100-30.38)/95
+(100-30.38)/80
+mean(c(100,25,40,75,85,70))
+mean(c(rep(10, 99,), 100))
+mean(c(rep(10, 99,), rep(100,5))
+)
+mean(c(rep(10, 99,), rep(100,10)))
+mean(c(rep(10, 100,), rep(100,50)))
+mean(c(rep(10, 100,), rep(100,40)))
+mean(c(rep(10, 100,), rep(100,30)))
+mean(c(rep(10, 100,), rep(100,29)))
+mean(c(rep(10, 90,), rep(100,29)))
+mean(c(rep(10, 110,), rep(100,29)))
+mean(c(rep(10, 101,), rep(100,29)))
+cars
+mtcars
+21/24
+14/24
+21/24-14/24
+evals <- c(rep(1, 35), rep(0, 13))
+evals
+mean(evals)
+sim.f <- sim.m <- c()
+nsims(1000000)
+nsims <- 1000000
+nsims <- 1000000#
+correct <- c(1,1,1,1,0,0,0,0)#
+guess.pct <- c()#
+for(i in 1:nsims){#
+	guess.pct[i] <- mean(sample(correct, 8, replace=FALSE)==correct)#
+}
+hist(correct)
+sample(correct, 8, replace=FALSE)
+sample(correct, 8, replace=FALSE)==correct
+mean(sample(correct, 8, replace=FALSE)==correct)
+hist(guess.pct)
+mean(guess.pct==8)
+mean(guess.pct==1)
+.014*70
+60*.4 + 30*.6
+(70*3.33*100 + 40*.56*300 + 60*1.67*200 + 20*.43*400)/1000
+(70*400+60*300+40*200+10*100)/1000
+(1/4)/(400/1000)
+(1/4)/(300/1000)
+(1/4)/(200/1000)
+(1/4)/(100/1000)
+70*400*.625 + 60*300*.833 + 40*200*1.25 + 10*100*2.5
+(70*400*.625 + 60*300*.833 + 40*200*1.25 + 10*100*2.5)/1000
+(70*400*.625 + 60*300*.8333333333333333333333333333333333333333333333333 + 40*200*1.25 + 10*100*2.5)/1000
+70+60+40+10
+(70+60+40+10)/4
+273/60
+708/1500
+1.96*sqrt(.472*(1-.472)/1500)
+.472-.025
+.472+.025
+1500-708
+prop.test(c(rep(1,708),rep(0,792)))
+prop.test(708, 1500, correct=FALSE)
+prop.test(708, 1500)
+?prop.test
+args(prop.test)
+232/60
+249/60
+chisq.test(c(4387,17754,57173,39946), p=c(.06, .08, .54, .31))
+chisq.test(c(4387,17754,57173,39946), p=c(.06, .08, .55, .31))
+chisq.test(c(4387,17754,57173,39946), p=c(.06, .09, .54, .31))
+attach(foo)
+n.race <- c(39777, 48230, 329500, 188318)
+n.race / sum(n.race)
+prop.test(17754, sum(n.race), p=.08)
+njury <- c(205,26,25,19)
+njury/sum(njury)
+chisq.test(c(205,26,25,19), p=c(.72,.07,.12,.09))
+pchisq(5.89, df=3)
+1-pchisq(5.89, df=3)
+PID <- rbind(c(138,83,64), c(64,67,84))
+chisq.test(PID)
+chisq.test(c(205,26,25,19), p=c(.72,.07,.12,.09))
+n.race <- c(39777, 48230, 329500, 188318)
+n.race / sum(n.race)
+chisq.test(c(4387,17754,57173,39946), p=c(.06, .09, .54, .31))
+267/60
+load("/Users/sjessee/Box Sync/Teaching Box/Online 350K/R walkthroughs/florida2000.RData")
+names(FL2000)
+rrace <- c(39777,48230,329500,188318)
+rrace/sum(rrace)
+sum(c(.06,.08,.54,.31))
+chisq.test(rrace, p=c(.07, .08, .54, .31))
+4387+17754+57173+39946
+prez <- c(.07, .08, .54, .31)
+(4387 - 119260*.07)^2/(119260*.07)
+(119260*.07)
+sum(rrace)
+(4387 - 605825*.07)^2/(605825*.07)
+(605825*.07)
+(119260*.07)
+rrace
+sum(c(55, 26, 29))
+pchisq(c(45, 26, 29), p=c(.5,.3,.2))
+chisq.test(c(45, 26, 29), p=c(.5,.3,.2))
+chisq.test(c(43, 28, 39), p=c(.5,.3,.2))
+sum(c(43, 28, 39))
+sum(c(43, 28, 29))
+chisq.test(c(43, 28, 29), p=c(.5,.3,.2))
+chisq.test(c(40, 28, 32), p=c(.5,.3,.2))
+100/50 + 4/30 + 144/20
+load("/Users/sjessee/Box Sync/Teaching Box/Online 350K/lab assignments/Lab3/ClassSurvey.RData")
+dim(CLASSSURVEY)
+253/60
+79-1.96*6.8
+79+1.96*6.8
+59.64-1.96*1.55
+59.64+1.96*1.55
+x <- 1:7
+y <- plogis(-6.6+1.65*x)
+plot(y~x)
+plot(y~x, xlab="PID7", ylab="Probability of voting for Trump")
+curve(plogis(-6.6+1.65*x), col="green", add=TRUE)
+plogis(-1)
+plogis(0)
+plogis(2.43)
+plogis(−6.6 + 1.65 ∗ 1)
+plogis(-6.6 + 1.65 ∗ 1)
+plogis(-6.6+1.65*1)
+93.85*.2 + 92*.25 + 98.4*.25 + 100*.03 + 0*.06 + 60*.21
+(41-50)^2/50 + (4/30) + 11^2/20
+bf <- rbinom(100000, size=10, prob=.7)
+bf <- rbinom(100000, size=10, prob=.35)
+lj <- rbinom(100000, size=10, prob=.7)
+mean(bf > lj)
+mean(bf == lj)
+library(rdlocrand)
+version(rdlocrand)
+a
+b
+a <- rnorm(40)
+plot(a)
+a <- rnorm(40) + (1:40)^2
+plot(a)
+a <- rnorm(40, sd=1:40) + (1:40)^2
+plot(a)
+a <- rnorm(40, sd=(1:40)*3) + (1:40)^2
+plot(a)
+a <- c()
+a[1] <- 64
+for(i in 2:40{a[i] <- a[i-1] + rnorm(1, mean=10, sd=8)
+for(i in 2:40{a[i] <- a[i-1] + rnorm(1, mean=10, sd=8)}
+for(i in 2:40){a[i] <- a[i-1] + rnorm(1, mean=10, sd=8)}
+plot(a)
+for(i in 2:40){a[i] <- a[i-1] + rnorm(1, mean=10, sd=40)}
+plot(a)
+for(i in 2:40){a[i] <- a[i-1] + rnorm(1, mean=10, sd=40)}
+plot(a)
+for(i in 2:40){a[i] <- a[i-1] + rnorm(1, mean=10, sd=40)}
+plot(a)
+for(i in 2:40){a[i] <- a[i-1] + rnorm(1, mean=10, sd=40)}
+plot(a)
+for(i in 2:40){a[i] <- a[i-1] + rnorm(1, mean=10, sd=40)}
+plot(a)
+b[1:20] <- a[1:20] + rnorm(1:20, mean=300, sd=19)
+b <- c()
+b[1:20] <- a[1:20] + rnorm(1:20, mean=300, sd=19)
+b[21:40] <- a[21:40] + rnorm(1:20, mean=300-200, sd=19)
+points(b, pch=19)
+b[1:20] <- a[1:20] + rnorm(1:20, mean=100, sd=19)
+b[21:40] <- a[21:40] + rnorm(1:20, mean=100-200, sd=19)
+points(b, pch=19)
+plot(a, xlab="day", ylab="COVID cases", pch=19)
+lines(a)
+points(b, col="gray" pch=19)
+points(b, col="gray", pch=19)
+lines(b, pch=19)
+plot(a, xlab="day", ylab="COVID cases", pch=19)
+lines(a)
+points(b, col="gray", pch=19)
+lines(b, col="gray")
+abline(v=20.5, lty=3, col="red")
+legend(c("State A", "State B"), pch=19, col=c("black", "gray"))
+legend(0, 680, c("State A", "State B"), pch=19, col=c("black", "gray"))
+for(i in 2:40){a[i] <- a[i-1] + rnorm(1, mean=10, sd=40)}
+plot(a)
+b[1:20] <- a[1:20] + rnorm(1:20, mean=100, sd=19)
+b[21:40] <- a[21:40] + rnorm(1:20, mean=100-200, sd=19)
+points(b, pch=19)
+plot(a, xlab="day", ylab="COVID cases", pch=19)
+lines(a)
+points(b, col="gray", pch=19)
+lines(b, col="gray")
+repdem <- 1:4
+ifelse(repdem == 1, 0 | repdem == 2, 1)
+install.packages("ivdesc")
+dir()
+ls()
+library(rio)
+DTA <- import("supremecourtdata2021_cleaned.dta")
+dim(DTA)
+names(DTA)
+attach(DTA)
+table(gayadoption_per)
+prop.table(gayadoption_per)
+prop.table(table(gayadoption_per))
+table(is.na(gayadoption_per))
+table(is.na(acatax_per))
+table(is.na(acasev_per))
+table(is.na(azprovballot_per))
+table(is.na(azcollectballot_per))
+table(is.na(donors_per))
+table(is.na(schoolspeech_per))
+table(is.na(juvcrime_per))
+table(is.na(databases_per))
+table(is.na(ncaa_per))
+table(is.na(covidchurch_per))
+table(is.na(unions_per))
+table(is.na(agencies_per))
+table(is.na(warrants_per))

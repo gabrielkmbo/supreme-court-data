@@ -1,0 +1,60 @@
+"IT"                                    7          4
+"agriculture"                          47         39
+"automotive"                           10          8
+"business services/consulting"         59         24
+"car sales"                             6          4
+"childcare"                            18         10
+"chiropractic/massage"                 13          4
+"cleaning"                             19         10
+"construction"                         47         34
+"cosmetology"                          33         17
+"craft"                                21          8
+"dentist"                              10          7
+"design"                                4          3
+"dog care"                              4          2
+"ecommerce"                             8          5
+"education"                             5          1
+"events"                                5          2
+"financial assistance"                 33         21
+"fitness"                               4          3
+"food catering"                         8          3
+"food/baker"                           17          6
+"gifts"                                 1          0
+"government"                            1          1
+"graphic design"                        6          2
+"healthcare"                           28         17
+"insurance"                            16         10
+"landscaping"                          13          7
+"language interpreter"                  1          0
+"laundromat"                            1          0
+"legal services"                       17          7
+"life coaching"                         4          0
+"maintenance"                           4          3
+"manufacturing"                        10          8
+"marketing"                             9          1
+"mary kay"                              3          1
+"media"                                 9          2
+"mental health/therapy"                10          2
+"music"                                 6          2
+"oil"                                   2          2
+"other"                                 8          6
+"photography/video"                    14          5
+"printing"                              3          2
+"private investigator"                  1          0
+"property manager"                     11          9
+"real estate"                          29         19
+"recreation/entertainment"              5          2
+"recruiting"                            1          1
+"religion"                              1          0
+"restaurant"                           18         12
+"retail"                               25         10
+"science"                               2          0
+"secondhand seller"                     8          2
+"sports"                                4          3
+"technology"                            1          1
+"transportation"                       15         12
+"travel agency"                         2          0
+"trucking"                             10          6
+"utilities"                            17         12
+"vending machine"                       3          1
+"veterinarian"                          4          3

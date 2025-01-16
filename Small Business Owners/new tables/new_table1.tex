@@ -1,0 +1,24 @@
+{
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begin{tabular}{l*{4}{c}}
+\hline\hline
+                    &\multicolumn{2}{c}{PID (6-point)}          &\multicolumn{2}{c}{Trump or Biden (3-point)}\\
+                    &\multicolumn{1}{c}{(1)}         &\multicolumn{1}{c}{(2)}         &\multicolumn{1}{c}{(3)}         &\multicolumn{1}{c}{(4)}         \\
+\hline
+Employer SBO        &       0.161\sym{***}&       0.095\sym{**} &       0.129\sym{**} &       0.111\sym{**} \\
+                    &     (0.030)         &     (0.034)         &     (0.040)         &     (0.043)         \\
+Non-Employer SBO    &      -0.012         &      -0.012         &       0.016         &       0.037         \\
+                    &     (0.020)         &     (0.021)         &     (0.026)         &     (0.027)         \\
+Not In Labor Force Non-SBO&      -0.045\sym{*}  &      -0.029         &      -0.050\sym{*}  &      -0.058\sym{*}  \\
+                    &     (0.019)         &     (0.021)         &     (0.024)         &     (0.027)         \\
+Gig Workers Non-SBO &      -0.059\sym{*}  &      -0.037         &      -0.079\sym{*}  &      -0.073\sym{*}  \\
+                    &     (0.027)         &     (0.027)         &     (0.035)         &     (0.036)         \\
+Constant            &       0.491\sym{***}&       0.495\sym{***}&       0.498\sym{***}&       0.497\sym{***}\\
+                    &     (0.011)         &     (0.012)         &     (0.014)         &     (0.015)         \\
+\hline
+Controls            &                     &           X         &                     &           X         \\
+Observations        &        2284         &        2283         &        2280         &        2279         \\
+R-squared           &        0.03         &        0.09         &        0.02         &        0.06         \\
+\hline\hline
+\end{tabular}
+}
