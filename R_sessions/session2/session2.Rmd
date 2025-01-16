@@ -1,0 +1,223 @@
+---
+title: "SRC R Session 2"
+author: "Yiqing Xu"
+date: 
+output:
+  pdf_document: default
+  html_document: default
+---
+
+
+## Resume Experiment
+
+### Preparation
+```{r}
+## clean up memory, check/set working directory as necessary
+rm(list = ls())
+getwd()
+dir()
+```
+
+### Loading and examining the data
+```{r}
+## load dataset
+d <- read.csv("resume.csv")
+
+## take a look at the dataset
+head(d)
+colnames(d)
+summary(d)
+unique(d$firstname) # unique first names in the data
+```
+\vspace{5mm}
+```{r}
+table(d$race)       # counts of race group for the names
+```
+
+```{r}
+table(d$call)       # counts of whether or not there was a callback
+```
+
+
+```{r}
+unique(d$firstname) # vector of unique first names in data
+```
+
+```{r}
+## draw the distribution of the callback rate
+hist(d$call)
+```
+
+```{r}
+## how many unique first names are there in the dataset?
+length(unique(d$firstname))
+```
+
+```{r}
+## how many of these names are 'black' names and 'white' names, respectively?
+length(unique(d$firstname[which(d$race == "white")]))
+length(unique(d$firstname[which(d$race == "black")]))
+```
+
+```{r}
+## how many of them are black names and white names, respectively?
+length(unique(d$firstname[which(d$race == "black")]))
+length(unique(d$firstname[which(d$race == "white")]))
+```
+
+```{r}
+## average call rates for blacks and whites
+call.wh <- mean(d$call[d$race=="white"])
+call.bl <- mean(d$call[d$race=="black"])
+```
+
+```{r}
+# calculate how much lower black callback rate is compared to white callback rate
+(call.wh - call.bl)/call.wh
+```
+
+```{r}
+## what's the average call back rate for each first name
+# first, get all first names
+names.wh <- unique(d[d$race=="white", "firstname"])
+names.bl <- unique(d[d$race=="black", "firstname"])
+```
+
+```{r}
+# get the mean for a particular name
+this.name <- names.bl[1] # first element of the black-sounding names vector
+mean(d$call[d$firstname == this.name])
+```
+\vspace{5mm}
+
+### Using a for loop to analyze the data
+We can use a for loop to calculate the average callback rate for each unique name in the data. In general, a for loop is useful in any situation where you want to repeat the same operation over a collection of elements.
+\vspace{5mm}
+```{r}
+## Step 1: Create a vector of elements over which the for loop will iterate
+## In this case, we want a vector of unique first names for each subgroup
+names.bl <- unique(d$firstname[which(d$race=="black")])
+names.wh <- unique(d$firstname[which(d$race=="white")])
+```
+
+```{r}
+# print the first five elements of each vector to check
+names.bl[1:5]
+names.wh[c(1,2,3,4,5)]
+```
+\vspace{5mm}
+```{r}
+## Step 2: Create an empty 'container object' to save the values of interest
+## In this case, we want to save the average callback rate for each name
+```
+
+```{r}
+# creates vector of 'NA's equal in length to the vectors we created in step 1
+call.bl <- rep(NA, length(names.bl))
+call.wh <- rep(NA, length(names.wh)) 
+```
+\vspace{5mm}
+```{r}
+## Step 3: Specify and run the for loop
+
+## check what a for loop does
+# counter variable 'i' will run from 1, 2, ... , 20
+for (i in 1:20){
+  print(i) # iterates over every value of 'i'
+}
+
+## this is some code we will run inside the for loop 
+## we will keep it here for debugging
+# code for debugging outside of the loop (commented out here)
+# i <- 1
+# names.bl[i]
+
+## now we want to iterate from 1 to the length of names.bl vector 
+## to get every name in the names.bl vector
+# counter variable 'i' will run from 1, 2, ... , length(names.bl)
+for (i in 1:length(names.bl)) {
+  this.name  <- names.bl[i] # what is the i-th name in names.bl
+  name.mean  <- mean(d$call[d$firstname==this.name]) # avg callback rate for that name
+  call.bl[i] <- name.mean   # save avg callback rate in i-th index of container
+}
+
+# can also simplify the above to one line of code
+for (i in 1:length(names.wh)) {
+  call.wh[i] <- mean(d$call[d$firstname==names.wh[i]])
+}
+
+## same task for white-sounding names
+for (i in 1:length(names.wh)){
+  # take the ith element of 'names.wh' 
+  this.name <- names.wh[i]
+  # store the mean of callbacks for this.name as the ith element of 
+  # call.wh vector
+  call.wh[i] <- mean(d$call[d$firstname == this.name])
+}
+```
+
+\vspace{5mm}
+```{r}
+# Compare the distributions of average call back rate for black and white names
+
+## Include the first and last lines in this chunk of code if you want
+## to save the plot as a PDF file in the current working directory.
+## Can also save as bmp(), jpeg(), or png() files (see help manual).
+
+# pdf("plotname.pdf", height = 4, width = 6) [include this line to save plot]
+plot(density(call.bl), col="forestgreen",
+     xlim=c(0, 0.2), ylim=c(0, 20),
+     xlab="Callback Rate", main="Callback Rate by Race")
+abline(v=mean(call.bl), lty=2, col="forestgreen")
+lines(density(call.wh), col="cornflowerblue")
+abline(v=mean(call.wh), lty=2, col="cornflowerblue")
+legend("topright", legend=c("'Black' Names", "'White' Names"), 
+       col=c("forestgreen", "cornflowerblue"), lwd=1, cex=0.75)
+# graphics.off() [include this line to save plot]
+```
+\vspace{5mm}
+
+
+```{r}
+# get the list of unique first names
+firstnames <- unique(d$firstname)
+
+# calculate its number of elements
+n <- length(unique(d$firstname))
+
+
+### Finding call back rates for black sounding names
+
+# step 1: create storage
+call.rate <- rep(NA, n) # this is a vector of length n; all elements are NAs
+
+# step 2: loop
+
+## we first do a trial run with the first element ("Allison")
+
+i <- 1 # create an index
+
+# subset the data to all rows whose first names are Allison, calcuate the mean call-back rate
+mean(d$call[which(d$firstname == firstnames[i])])
+
+# check whether this is the same as writing Allison directly
+mean(d$call[which(d$firstname == "Allison")])
+
+# yes it is! success!
+
+# now we can write a for loop
+for (i in 1:n) { # let i run from 1 to n
+  # the ith element of the vector call.rate is the average callback rate for the ith first name from the name of unique names we created
+  call.rate[i] <- mean(d$call[which(d$firstname == firstnames[i])])
+}
+
+# check this vector
+call.rate
+
+# we can create a dataframe combining the call rate vector and the first names
+
+cbind.data.frame(firstnames, call.rate)
+
+# or we can give names to elements of this callback rate vector
+names(call.rate) <- firstnames
+```

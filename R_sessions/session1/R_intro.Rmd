@@ -1,0 +1,291 @@
+---
+title: "Introduction to R"
+author: "Yiqing Xu (Stanford)"
+date: ""
+output:
+  beamer_presentation:
+    incremental: no
+  ioslides_presentation:
+    transition: 0
+    incremental: no
+    fig_height: 5.5
+    fig_width: 8.2
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Getting Started with ```R```
+
+- Download ```R``` from <https://cran.r-project.org>
+- Download ```RStudio``` from <http://www.rstudio.com>
+- We will be using ```session1.R``` (code file) and ```nations.RData``` (data file) 
+
+## Big Picture
+
+1. Data are tables, but 
+    + Rows and columns
+    + There are other types of objects: vectors, matrices
+\bigskip  
+2. We write R scripts to manipulate data
+    + Data need to be loaded and saved
+    + R scripts need to be loaded and saved for reproducibility
+\bigskip      
+3. Packages are collections of generalizable R scripts (functions)
+    + Download and install them from CRAN or Github
+    + You can write your own functions or packages
+\bigskip  
+4. You learn to code by coding
+    + Breaking things is an essential part of learning
+    + Learn with your own pace
+
+## Today's Agenda
+
+- Arithmetic Operations
+- Objects
+- Vectors
+- Functions
+- Data Files
+- Saving Objects
+- Packages
+- Programming Tips
+
+## Arithmetic Operations
+
+```R``` can be used as a calculator:
+
+```{r, echo = TRUE}
+5 + 3
+
+5 / 3
+
+5 ^ 3
+```
+
+## Objects
+
+```R``` is an "object-oriented" programming language. An *object* is any piece of information stored by ```R```. These can be anything, for example:
+
+- A dataset (e.g. a country year dataset)
+- A subset of a dataset (e.g. just the democracies in a country year dataset)
+- A number (e.g. $2\pi + 1$)
+- A phrase (e.g. "Stanford is awesome")
+- A function (e.g. a function that takes in $x$ and gives you $x^2 + 8$)
+
+## Objects (cont.)
+
+```R``` can store *objects* with a name of our choice. Use ```<-``` as an assignment operator for objects.
+
+```{r, echo = TRUE}
+result <- 5 + 3
+result
+```
+
+If we assign a new value to the same object name, then we will overwite this object (so be careful when doing so!)
+
+```{r, echo = TRUE}
+result <- 5 - 3
+result
+```
+
+## Objects (cont.)
+
+```R``` can also represent other types of values as objects, such as strings of characters:
+```{r, echo = TRUE}
+Stanford <- "Stanford is awesome"
+Stanford
+```
+
+There are many other classes of data besides numeric and character, which we will talk about in class
+
+## Vectors
+
+A *vector* simply represents a collection of information stored in a specific order. We use the function ```c()```, which stands for "concatenate," to enter a data vector (with commas separating elements of the vector):
+
+```{r, echo = TRUE}
+world.pop <- c(2525779, 3026003, 3691173, 4449049, 
+               5320817, 6127700, 6916183)
+world.pop
+```
+
+## Vectors (cont.)
+
+To access specific elements of a vector, we use square brackets ```[ ]```. This is called *indexing*:
+
+```{r, echo = TRUE}
+world.pop[2]
+
+world.pop[c(2, 4)]
+```
+
+## Vectors (cont.)
+
+Since each element of this vector is a numeric value, we can apply arithmetic operations to it:
+
+```{r, echo = TRUE}
+world.pop * 1000
+```
+
+## Functions
+
+A *function* takes input object(s) and returns an output object. In ```R```, a function generally runs as ```funcname(input)``` where ```funcname``` is the function name and ```input``` is the input object. We often call these inputs *arguments*. Some basic functions useful for summarizing data include:
+
+- ```length()```: length of a vector (number of elements)
+- ```min()```: minimum value
+- ```max()```: maximum value
+- ```range()```: range of data
+- ```mean()```: mean
+- ```sum()```: sum
+
+## Functions (cont.)
+
+```{r, echo = TRUE}
+length(world.pop)
+
+min(world.pop)
+
+max(world.pop)
+```
+
+## Functions (cont.)
+
+```{r, echo = TRUE}
+range(world.pop)
+
+mean(world.pop)
+
+sum(world.pop)
+```
+
+## Data Files
+
+Most of the time, we will load data from an external file. For this class, we will mostly use:
+
+- *CSV*: comma-separated files. These are conceptually similar to Microsoft Excel or Google Spreadsheet.
+
+- *RData*: collection of ```R``` objects including data sets.
+
+## Working Directory
+
+- The *working directory* is where ```R``` will by default load data from and save data to. 
+
+- Use the function ```getwd()``` to display the current working directory.
+
+```{r, echo = TRUE}
+getwd()
+```
+
+- Use the function ```setwd()``` to change the working directory
+
+```{r, echo = TRUE}
+path <- getwd()
+setwd(path)
+```
+
+- In ```RStudio```, you can also go to Session, Set Working Directory, To Source File Location to set it where your ```R``` file is located
+
+## Reading in Files
+
+- For *CSV* files:
+
+```{r, echo = TRUE}
+d <- read.csv("nations.csv")
+```
+
+- For *RData* files:
+
+```{r, echo = TRUE}
+# d <- load("d.RData")
+```
+
+## Data Frames
+
+A *data frame* is a collection of vectors, but we can think of it like a spreadsheet. Useful functions for data frames include:
+
+- ```names()```: return a vector of variable names
+- ```nrow()```: return the number of rows
+- ```ncol()```: return the number of columns
+- ```dim()```: combine ```ncol()``` and ```nrow()``` into a vector
+- ```summary()```: produce a summary
+
+## Data Frames (cont.)
+
+```{r, echo = TRUE}
+names(d)
+
+nrow(d)
+
+ncol(d)
+```
+
+## Data Frames (cont.)
+
+```{r, echo = TRUE}
+dim(d)
+
+summary(d)
+```
+
+## Data Frames (cont.)
+
+The ```$``` operator is one way to access variables from a data frame:
+
+```{r, echo = TRUE}
+d$country
+```
+
+Another way of retrieving variables is to use brackets ```[ ]``` with a comma in the form ```[rows, columns]```:
+
+```{r, echo = TRUE}
+d[, "gdppc"]
+
+d[1:6, "year"]
+```
+
+## Saving Objects
+
+- When you quit ```RStudio```, you will be asked whether you would like to save the workspace. You should answer *no* to this in general: we only want to save what we want!
+
+- To export *CSV*:
+```{r, echo = TRUE}
+write.csv(d, file = "nations_new.csv")
+```
+
+- To export *RData*:
+```{r, echo = TRUE}
+save(d, file = "nations.RData")
+```
+
+## Packages
+
+One of ```R```'s strengths is the existence of a large community of ```R``` users who contribute various functionalities as ```R``` packages. For example, the ```foreign``` package is useful when dealing with files from other statistical software.
+
+```{r, echo = TRUE}
+# install.packages("foreign") # install package
+library(foreign) # load package
+```
+
+## Programming Tips
+
+- First, use the text editor in ```RStudio``` to write your code rather than directly typing it into the R console. That way you can save a record of your program as a ```R``` file.
+
+- Second, we can annotate our ```R``` code so that it is easily understandable to ourselves and others using #
+
+```{r, echo = TRUE}
+# File: d.R
+# Author: Yiqing Xu
+# This code loads the UN population data
+
+d <- read.csv("nations.csv")
+```
+
+## Programming Tips (cont.)
+
+Third, we should follow a certain set of coding rules:
+
+- Use informative names for files, variables, and functions
+- Use systematic spacing and indentation
+
+Finally, ```R Markdown``` is useful for quickly writing documents using ```R```. I used it to make this presentation, and you will be using this to turn in your problem sets.

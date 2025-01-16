@@ -1,0 +1,266 @@
+---
+title: "SRC Summer Camp"
+author: "Session 1"
+date: ""
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introduction to R
+
+This is an R markdown file summarizing the material from lecture 2. You can also use it as a template for writing your Problem Sets in R markdown. 
+
+First, when writing an R script you can give it a title, date, and name who the author is. 
+
+```{r}
+#---
+# title: Lecture 2: Introduction to R
+# author: Name
+# date: Sep 16, 2019
+#---
+```
+
+
+## Arithmetic Operations
+
+You can use R as a calculator. You can try summation, division, multiplication, power calculations.
+
+```{r}
+5 + 3
+5 - 3
+5 / 3
+5 * 3
+5 ^ 3
+```
+
+
+
+## Objects
+
+R is an "object-oriented" programming language. An *object* is any piece of information stored by R. 
+These can be anything, for example:
+  
+- A dataset (e.g. a country year dataset)
+- A subset of a dataset (e.g. just the democracies in a country year dataset)
+- A number (e.g. $2\pi + 1$)
+- A phrase (e.g. "stanford is awesome")
+- A function (e.g. a function that takes in $x$ and gives you $x^2 + 8$)
+  
+R can store *objects* with a name of our choice. Use <- as an assignment operator for objects.
+
+```{r}
+result <- 5 + 3
+
+result
+```
+
+If we assign a new value to the same object name, then we will overwite this object (so be careful when doing so!)
+
+```{r}
+result <- 5 - 3
+result
+```
+
+R can also represent other types of values as objects, such as strings of characters:
+
+```{r}
+s <- "stanford is awesome"
+s
+```
+
+There are many other classes of data besides numeric and character, which we will talk about in class.
+
+## Vectors
+
+A *vector* simply represents a collection of information stored in a specific order. 
+We use the function c(), which stands for "concatenate," to enter a data vector (with commas separating elements of the vector):
+
+```{r}
+world.pop <- c(2525779, 3026003, 3691173, 4449049, 5320817, 6127700, 6916183)
+world.pop
+
+a <- c(1, 2, 3, 5)
+```
+
+To access specific elements of a vector, we use square brackets [ ]. This is called *indexing*:
+  
+```{r}
+world.pop[2]
+
+world.pop[-1]
+
+world.pop[c(2, 4)]
+
+world.pop[-c(1,3)]
+```
+  
+
+Since each element of this vector is a numeric value, we can apply arithmetic operations to it:
+
+```{r}
+b <- world.pop /1000
+```
+
+## Functions
+
+A *function* takes input object(s) and returns an output object. In R, a function generally runs as funcname(input) where funcname is the function name and input is the input object. We often call these inputs *arguments*.
+
+Some basic functions useful for summarizing data include:
+  
+- length(): length of a vector (number of elements)
+- min(): minimum value
+- max(): maximum value
+- range(): range of data
+- mean(): mean
+- sum(): sum
+
+```{r}
+length(world.pop)
+
+min(world.pop)
+
+max(world.pop)
+
+range(world.pop)[2]
+
+mean(world.pop)
+
+sum(world.pop)
+```
+
+## Data Files
+
+Most of the time, we will load data from an external file. For this class, we will mostly use:
+  
+- *CSV*: comma-separated files. These are conceptually similar to Microsoft Excel or Google Spreadsheet.
+- *RData*: collection of R objects including data sets.
+
+## Working Directory
+
+The *working directory* is where R will by default load data from and save data to. You can use the function getwd() to display the current working directory.
+
+```{r}
+getwd()
+```
+
+You can use the function setwd() to change the working directory
+
+```{r}
+# setwd("") # Enter your directory here
+```
+
+In RStudio, you can also go to Session, Set Working Directory, To Source File Location to set it where your R file is located.
+
+## Clear memory
+
+You can use the \texttt{rm} function to clear memory or remove objects. 
+
+```{r}
+rm(list = ls())
+```
+
+## Reading in Files
+
+- For *CSV* files:
+
+```{r}
+d <- read.csv("nations.csv")
+```
+
+- For *RData* files:
+```{r}
+rm(list = ls())
+load("nations.RData")
+```
+
+## Data Frames
+
+A *data frame* is a collection of vectors, but we can think of it like a spreadsheet. 
+
+Useful functions for data frames include:
+- names(): return a vector of variable names
+- nrow(): return the number of rows
+- ncol(): return the number of columns
+- dim(): combine ncol() and nrow() into a vector
+- summary(): produce a summary
+
+```{r}
+names(d)
+
+nrow(d)
+
+ncol(d)
+
+dim(d)
+
+summary(d)
+```
+
+The $ operator is one way to access variables from a data frame:
+```{r}
+table(d$demo)
+table(d$year)
+```
+  
+Another way of retrieving variables is to use brackets [ ] with a comma in the form [rows, columns]:
+  
+```{r}
+d[, "country"]
+
+d[1:4, "year"]
+```
+  
+## Saving Objects
+
+When you quit RStudio, you will be asked whether you would like to save the workspace. You should answer *no* to this in general: we only want to save what we want!
+  
+- To export *CSV*:
+
+```{r}
+write.csv(d, file = "nations_new.csv")
+```
+
+- To export *RData*:
+
+```{r}
+save(d, file = "d.RData")
+```
+
+## Packages
+
+One of R's strengths is the existence of a large community of R users who contribute various functionalities as R packages. For example, the foreign package is useful when dealing with files from other statistical software.
+
+```{r}
+# install.packages("foreign") # install package
+library(foreign) # load package
+```
+
+## Programming Tips
+
+First, use the text editor in RStudio to write your code rather than directly typing it into the R console. That way you can save a record of your program as a R file.
+
+Second, we can annotate our R code so that it is easily understandable to ourselves and others using #
+
+```{r}
+# File: d.R
+# Author: Charlie McClean
+# This code loads the UN population data
+
+d <- read.csv("nations.csv")
+```
+
+Third, we should follow a certain set of coding rules:
+
+* Use informative names for files, variables, and functions
+* Use systematic spacing and indentation
+
+```{r}
+# File: d.R
+# Author: Charlie McClean
+# This code loads the UN population data
+
+d <- read.csv("nations.csv")
+```
